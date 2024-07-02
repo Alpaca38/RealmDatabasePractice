@@ -12,6 +12,19 @@
 		D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FD2C33E28200F3E452 /* ListViewController.swift */; };
 		D1E588032C33E28300F3E452 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1E588022C33E28300F3E452 /* Assets.xcassets */; };
 		D1E588062C33E28300F3E452 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D1E588052C33E28300F3E452 /* Base */; };
+		D1E5880F2C33E41500F3E452 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5880E2C33E41500F3E452 /* BaseView.swift */; };
+		D1E588122C33E48500F3E452 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588112C33E48500F3E452 /* ListView.swift */; };
+		D1E588142C33E4EA00F3E452 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588132C33E4EA00F3E452 /* BaseTableViewCell.swift */; };
+		D1E588172C33E58300F3E452 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D1E588162C33E58300F3E452 /* RealmSwift */; };
+		D1E5881A2C33E58E00F3E452 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D1E588192C33E58E00F3E452 /* SnapKit */; };
+		D1E5881D2C33E5A000F3E452 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = D1E5881C2C33E5A000F3E452 /* Toast */; };
+		D1E5881F2C33E5B400F3E452 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5881E2C33E5B400F3E452 /* ListTableViewCell.swift */; };
+		D1E588222C33E5CD00F3E452 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588212C33E5CD00F3E452 /* ReuseIdentifier.swift */; };
+		D1E588282C33E91000F3E452 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588272C33E91000F3E452 /* Todo.swift */; };
+		D1E5882B2C33ECEC00F3E452 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5882A2C33ECEC00F3E452 /* RegisterViewController.swift */; };
+		D1E5882D2C33ED7B00F3E452 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5882C2C33ED7B00F3E452 /* RegisterView.swift */; };
+		D1E5882F2C33F08200F3E452 /* RegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5882E2C33F08200F3E452 /* RegisterTableViewCell.swift */; };
+		D1E588322C33FC9400F3E452 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588312C33FC9400F3E452 /* Extension+UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +35,16 @@
 		D1E588022C33E28300F3E452 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1E588052C33E28300F3E452 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1E588072C33E28300F3E452 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1E5880E2C33E41500F3E452 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		D1E588112C33E48500F3E452 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		D1E588132C33E4EA00F3E452 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		D1E5881E2C33E5B400F3E452 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		D1E588212C33E5CD00F3E452 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
+		D1E588272C33E91000F3E452 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		D1E5882A2C33ECEC00F3E452 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D1E5882C2C33ED7B00F3E452 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		D1E5882E2C33F08200F3E452 /* RegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTableViewCell.swift; sourceTree = "<group>"; };
+		D1E588312C33FC9400F3E452 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +52,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1E5881D2C33E5A000F3E452 /* Toast in Frameworks */,
+				D1E588172C33E58300F3E452 /* RealmSwift in Frameworks */,
+				D1E5881A2C33E58E00F3E452 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,14 +80,72 @@
 		D1E587F82C33E28200F3E452 /* RealmDatabasePractice */ = {
 			isa = PBXGroup;
 			children = (
+				D1E588302C33FC8800F3E452 /* Extension */,
+				D1E588292C33ECD400F3E452 /* Register */,
+				D1E588262C33E8FC00F3E452 /* RealmModel */,
+				D1E588202C33E5C200F3E452 /* Protocol */,
+				D1E588102C33E47A00F3E452 /* List */,
+				D1E5880D2C33E40700F3E452 /* Base */,
 				D1E587F92C33E28200F3E452 /* AppDelegate.swift */,
 				D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */,
-				D1E587FD2C33E28200F3E452 /* ListViewController.swift */,
 				D1E588022C33E28300F3E452 /* Assets.xcassets */,
 				D1E588042C33E28300F3E452 /* LaunchScreen.storyboard */,
 				D1E588072C33E28300F3E452 /* Info.plist */,
 			);
 			path = RealmDatabasePractice;
+			sourceTree = "<group>";
+		};
+		D1E5880D2C33E40700F3E452 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D1E5880E2C33E41500F3E452 /* BaseView.swift */,
+				D1E588132C33E4EA00F3E452 /* BaseTableViewCell.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		D1E588102C33E47A00F3E452 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				D1E587FD2C33E28200F3E452 /* ListViewController.swift */,
+				D1E588112C33E48500F3E452 /* ListView.swift */,
+				D1E5881E2C33E5B400F3E452 /* ListTableViewCell.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		D1E588202C33E5C200F3E452 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D1E588212C33E5CD00F3E452 /* ReuseIdentifier.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		D1E588262C33E8FC00F3E452 /* RealmModel */ = {
+			isa = PBXGroup;
+			children = (
+				D1E588272C33E91000F3E452 /* Todo.swift */,
+			);
+			path = RealmModel;
+			sourceTree = "<group>";
+		};
+		D1E588292C33ECD400F3E452 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				D1E5882A2C33ECEC00F3E452 /* RegisterViewController.swift */,
+				D1E5882C2C33ED7B00F3E452 /* RegisterView.swift */,
+				D1E5882E2C33F08200F3E452 /* RegisterTableViewCell.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		D1E588302C33FC8800F3E452 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D1E588312C33FC9400F3E452 /* Extension+UIViewController.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +164,11 @@
 			dependencies = (
 			);
 			name = RealmDatabasePractice;
+			packageProductDependencies = (
+				D1E588162C33E58300F3E452 /* RealmSwift */,
+				D1E588192C33E58E00F3E452 /* SnapKit */,
+				D1E5881C2C33E5A000F3E452 /* Toast */,
+			);
 			productName = RealmDatabasePractice;
 			productReference = D1E587F62C33E28200F3E452 /* RealmDatabasePractice.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +197,11 @@
 				Base,
 			);
 			mainGroup = D1E587ED2C33E28200F3E452;
+			packageReferences = (
+				D1E588152C33E58300F3E452 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				D1E588182C33E58E00F3E452 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D1E5881B2C33E5A000F3E452 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+			);
 			productRefGroup = D1E587F72C33E28200F3E452 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,9 +228,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1E5881F2C33E5B400F3E452 /* ListTableViewCell.swift in Sources */,
+				D1E5882B2C33ECEC00F3E452 /* RegisterViewController.swift in Sources */,
 				D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */,
 				D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */,
+				D1E588122C33E48500F3E452 /* ListView.swift in Sources */,
+				D1E5882D2C33ED7B00F3E452 /* RegisterView.swift in Sources */,
+				D1E588282C33E91000F3E452 /* Todo.swift in Sources */,
 				D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */,
+				D1E588322C33FC9400F3E452 /* Extension+UIViewController.swift in Sources */,
+				D1E588142C33E4EA00F3E452 /* BaseTableViewCell.swift in Sources */,
+				D1E5880F2C33E41500F3E452 /* BaseView.swift in Sources */,
+				D1E5882F2C33F08200F3E452 /* RegisterTableViewCell.swift in Sources */,
+				D1E588222C33E5CD00F3E452 /* ReuseIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +461,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D1E588152C33E58300F3E452 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.52.1;
+			};
+		};
+		D1E588182C33E58E00F3E452 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		D1E5881B2C33E5A000F3E452 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D1E588162C33E58300F3E452 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1E588152C33E58300F3E452 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		D1E588192C33E58E00F3E452 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1E588182C33E58E00F3E452 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		D1E5881C2C33E5A000F3E452 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1E5881B2C33E5A000F3E452 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D1E587EE2C33E28200F3E452 /* Project object */;
 }
