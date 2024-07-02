@@ -72,5 +72,15 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(data: data)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
+            try! self.realm.write {
+                let data = self.list[indexPath.row]
+                self.realm.delete(data)
+            }
+        }
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
 }
 
