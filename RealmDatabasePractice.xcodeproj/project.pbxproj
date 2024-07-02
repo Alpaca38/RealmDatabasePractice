@@ -25,6 +25,8 @@
 		D1E5882D2C33ED7B00F3E452 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5882C2C33ED7B00F3E452 /* RegisterView.swift */; };
 		D1E5882F2C33F08200F3E452 /* RegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5882E2C33F08200F3E452 /* RegisterTableViewCell.swift */; };
 		D1E588322C33FC9400F3E452 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588312C33FC9400F3E452 /* Extension+UIViewController.swift */; };
+		D1E588362C34075900F3E452 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588352C34075900F3E452 /* DateViewController.swift */; };
+		D1E588382C3409EC00F3E452 /* DatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		D1E5882C2C33ED7B00F3E452 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		D1E5882E2C33F08200F3E452 /* RegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTableViewCell.swift; sourceTree = "<group>"; };
 		D1E588312C33FC9400F3E452 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		D1E588352C34075900F3E452 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
+		D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 				D1E588022C33E28300F3E452 /* Assets.xcassets */,
 				D1E588042C33E28300F3E452 /* LaunchScreen.storyboard */,
 				D1E588072C33E28300F3E452 /* Info.plist */,
+				D1E588352C34075900F3E452 /* DateViewController.swift */,
 			);
 			path = RealmDatabasePractice;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				D1E588212C33E5CD00F3E452 /* ReuseIdentifier.swift */,
+				D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -228,8 +234,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1E588382C3409EC00F3E452 /* DatePickerDelegate.swift in Sources */,
 				D1E5881F2C33E5B400F3E452 /* ListTableViewCell.swift in Sources */,
 				D1E5882B2C33ECEC00F3E452 /* RegisterViewController.swift in Sources */,
+				D1E588362C34075900F3E452 /* DateViewController.swift in Sources */,
 				D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */,
 				D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */,
 				D1E588122C33E48500F3E452 /* ListView.swift in Sources */,

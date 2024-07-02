@@ -15,6 +15,7 @@ final class RegisterViewController: UIViewController {
     }
     
     let registerView = RegisterView()
+    var date: Date?
     
     override func loadView() {
         registerView.tableView.delegate = self
@@ -48,7 +49,7 @@ private extension RegisterViewController {
             self.view.makeToast("제목이 비어있습니다. 제목을 입력해주세요.", duration: 2, position: .center)
             return
         }
-        let data = Todo(title: title, content: registerView.contentTextField.text, date: nil)
+        let data = Todo(title: title, content: registerView.contentTextField.text, date: date)
         try! realm.write {
             realm.add(data)
         }
@@ -68,5 +69,18 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == Options.allCases.firstIndex(of: .deadline) {
+            let vc = DateViewController()
+            vc.delegate = self
+            let navi = UINavigationController(rootViewController: vc)
+            present(navi, animated: true)
+        }
+    }
+}
+
+extension RegisterViewController: DatePickerDelegate {
+    func didSaveButtonTapped(date: Date) {
+        self.date = date
+    }
 }

@@ -51,6 +51,26 @@ final class ListViewController: UIViewController {
     private func setNavi() {
         let registerButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(registerButtonTapped))
         navigationItem.leftBarButtonItem = registerButton
+        
+        let sortButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
+        sortButton.menu = {
+            let deadlineSort = UIAction(title: "마감일 순으로 보기") { [weak self] _ in
+                guard let self else { return }
+                let results = realm.objects(Todo.self).sorted(byKeyPath: "date", ascending: true)
+                list = results
+                listView.tableView.reloadData()
+            }
+            let titleSort = UIAction(title: "제목 순으로 보기") { [weak self] _ in
+                guard let self else { return }
+                let results = realm.objects(Todo.self).sorted(byKeyPath: "title", ascending: true)
+                list = results
+                listView.tableView.reloadData()
+            }
+            let menu = UIMenu(children: [deadlineSort, titleSort])
+            
+            return menu
+        }()
+        navigationItem.rightBarButtonItem = sortButton
     }
     
     @objc private func registerButtonTapped() {
