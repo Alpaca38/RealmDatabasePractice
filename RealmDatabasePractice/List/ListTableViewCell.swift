@@ -56,6 +56,6 @@ final class ListTableViewCell: BaseTableViewCell {
     func configure(data: Todo) {
         titleLabel.text = data.title
         contentLabel.text = data.content
-        dateLabel.text = data.date?.formatted()
+        dateLabel.text = data.date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).locale(Locale(identifier: "ko-KR")))
     }
 }

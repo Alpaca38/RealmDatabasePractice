@@ -27,6 +27,7 @@
 		D1E588322C33FC9400F3E452 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588312C33FC9400F3E452 /* Extension+UIViewController.swift */; };
 		D1E588362C34075900F3E452 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588352C34075900F3E452 /* DateViewController.swift */; };
 		D1E588382C3409EC00F3E452 /* DatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */; };
+		D1E5883B2C34C28A00F3E452 /* RegisterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5883A2C34C28A00F3E452 /* RegisterOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		D1E588312C33FC9400F3E452 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		D1E588352C34075900F3E452 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDelegate.swift; sourceTree = "<group>"; };
+		D1E5883A2C34C28A00F3E452 /* RegisterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		D1E587F82C33E28200F3E452 /* RealmDatabasePractice */ = {
 			isa = PBXGroup;
 			children = (
+				D1E588392C34C28100F3E452 /* Enum */,
 				D1E588302C33FC8800F3E452 /* Extension */,
 				D1E588292C33ECD400F3E452 /* Register */,
 				D1E588262C33E8FC00F3E452 /* RealmModel */,
@@ -152,6 +155,14 @@
 				D1E588312C33FC9400F3E452 /* Extension+UIViewController.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		D1E588392C34C28100F3E452 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				D1E5883A2C34C28A00F3E452 /* RegisterOptions.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1E588382C3409EC00F3E452 /* DatePickerDelegate.swift in Sources */,
+				D1E5883B2C34C28A00F3E452 /* RegisterOptions.swift in Sources */,
 				D1E5881F2C33E5B400F3E452 /* ListTableViewCell.swift in Sources */,
 				D1E5882B2C33ECEC00F3E452 /* RegisterViewController.swift in Sources */,
 				D1E588362C34075900F3E452 /* DateViewController.swift in Sources */,

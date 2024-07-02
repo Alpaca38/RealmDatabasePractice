@@ -47,6 +47,6 @@ final class DateViewController: UIViewController {
     
     @objc private func saveButtonTapped() {
         delegate?.didSaveButtonTapped(date: date)
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }

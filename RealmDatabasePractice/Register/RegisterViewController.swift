@@ -10,9 +10,6 @@ import RealmSwift
 import Toast
 
 final class RegisterViewController: UIViewController {
-    enum Options: String, CaseIterable {
-        case deadline = "마감일"
-    }
     
     let registerView = RegisterView()
     var date: Date?
@@ -59,22 +56,23 @@ private extension RegisterViewController {
 
 extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Options.allCases.count
+        RegisterOptions.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RegisterTableViewCell.identifier, for: indexPath) as! RegisterTableViewCell
-        let data = Options.allCases[indexPath.row].rawValue
-        cell.configure(data: data)
+        guard let option = RegisterOptions(rawValue: indexPath.row) else {
+            return cell
+        }
+        cell.configure(option: option, date: date)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == Options.allCases.firstIndex(of: .deadline) {
+        if indexPath.row == RegisterOptions.allCases.firstIndex(of: .deadline) {
             let vc = DateViewController()
             vc.delegate = self
-            let navi = UINavigationController(rootViewController: vc)
-            present(navi, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
@@ -82,5 +80,6 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
 extension RegisterViewController: DatePickerDelegate {
     func didSaveButtonTapped(date: Date) {
         self.date = date
+        registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.deadline.rawValue, section: 0)], with: .automatic)
     }
 }

@@ -13,6 +13,7 @@ class RegisterTableViewCell: BaseTableViewCell {
         let view = UIView()
         view.addSubview(self.titleLabel)
         view.addSubview(self.nextButton)
+        view.addSubview(self.contentLabel)
         view.backgroundColor = .lightGray
         view.layer.cornerRadius = 8
         self.contentView.addSubview(view)
@@ -29,6 +30,11 @@ class RegisterTableViewCell: BaseTableViewCell {
         view.tintColor = .black
         return view
     }()
+    lazy var contentLabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 14)
+        return view
+    }()
     
     override func configureLayout() {
         customView.snp.makeConstraints {
@@ -41,11 +47,20 @@ class RegisterTableViewCell: BaseTableViewCell {
         nextButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-20)
             $0.centerY.equalTo(titleLabel)
+            $0.width.equalTo(10)
             $0.height.equalTo(15)
+        }
+        contentLabel.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalTo(nextButton.snp.leading).offset(-8)
         }
     }
     
-    func configure(data: String) {
-        titleLabel.text = data
+    func configure(option: RegisterOptions, date: Date?) {
+        titleLabel.text = option.optionString
+        switch option {
+        case .deadline:
+            contentLabel.text = date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).locale(Locale(identifier: "ko-KR")))
+        }
     }
 }
