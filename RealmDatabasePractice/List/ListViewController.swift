@@ -13,6 +13,16 @@ final class ListViewController: UIViewController {
     var list: Results<Todo>!
     let realm = try! Realm()
     var notificationToken: NotificationToken?
+    var category: CategoryList
+    
+    init(category: CategoryList) {
+        self.category = category
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         listView.tableView.delegate = self
@@ -28,7 +38,29 @@ final class ListViewController: UIViewController {
 
 private extension ListViewController {
     func setList() {
-        let results = realm.objects(Todo.self)
+        let results: Results<Todo>
+        switch category {
+        case .today:
+            let calendar = Calendar.current
+            let startOfDay = calendar.startOfDay(for: Date())
+            let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+            results = realm.objects(Todo.self).where {
+                $0.date >= startOfDay && $0.date < endOfDay
+            }
+        case .todo:
+            let calendar = Calendar.current
+            let today = calendar.startOfDay(for: Date())
+            results = realm.objects(Todo.self).where {
+                $0.date >= today
+            }
+        case .total:
+            results = realm.objects(Todo.self)
+        case .flag:
+            results = realm.objects(Todo.self)
+        case .complete:
+            results = realm.objects(Todo.self)
+        }
+        
         list = results
         print(realm.configuration.fileURL!)
         

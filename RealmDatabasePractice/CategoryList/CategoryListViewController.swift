@@ -62,19 +62,19 @@ extension CategoryListViewController: UICollectionViewDelegate, UICollectionView
         let selectedCategory = CategoryList.allCases[indexPath.item]
         switch selectedCategory {
         case .today:
-            let vc = ListViewController()
+            let vc = ListViewController(category: .today)
             navigationController?.pushViewController(vc, animated: true)
         case .todo:
-            let vc = ListViewController()
+            let vc = ListViewController(category: .todo)
             navigationController?.pushViewController(vc, animated: true)
         case .total:
-            let vc = ListViewController()
+            let vc = ListViewController(category: .total)
             navigationController?.pushViewController(vc, animated: true)
         case .flag:
-            let vc = ListViewController()
+            let vc = ListViewController(category: .flag)
             navigationController?.pushViewController(vc, animated: true)
         case .complete:
-            let vc = ListViewController()
+            let vc = ListViewController(category: .complete)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
