@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class RegisterTableViewCell: BaseTableViewCell {
-    lazy var customView = {
+final class RegisterTableViewCell: BaseTableViewCell {
+    private lazy var customView = {
         let view = UIView()
         view.addSubview(self.titleLabel)
         view.addSubview(self.nextButton)
@@ -19,18 +19,18 @@ class RegisterTableViewCell: BaseTableViewCell {
         self.contentView.addSubview(view)
         return view
     }()
-    lazy var titleLabel = {
+    private let titleLabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 17)
         return view
     }()
-    lazy var nextButton = {
+    private let nextButton = {
         let view = UIImageView()
         view.image = UIImage(systemName: "chevron.right")
         view.tintColor = .black
         return view
     }()
-    lazy var contentLabel = {
+    private let contentLabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 14)
         return view
@@ -60,7 +60,7 @@ class RegisterTableViewCell: BaseTableViewCell {
         titleLabel.text = option.optionString
         switch option {
         case .deadline:
-            contentLabel.text = date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).locale(Locale(identifier: "ko-KR")))
+            contentLabel.text = date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).weekday().locale(Locale(identifier: "ko-KR")))
         }
     }
 }

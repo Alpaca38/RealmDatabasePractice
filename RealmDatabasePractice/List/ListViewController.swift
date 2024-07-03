@@ -22,6 +22,12 @@ final class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavi()
+        setList()
+    }
+}
+
+private extension ListViewController {
+    func setList() {
         let results = realm.objects(Todo.self)
         list = results
         print(realm.configuration.fileURL!)
@@ -29,9 +35,9 @@ final class ListViewController: UIViewController {
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.listView.tableView else { return }
             switch changes {
-            case .initial(let collectionType):
+            case .initial(_):
                 tableView.reloadData()
-            case .update(let collectionType, let deletions, let insertions, let modifications):
+            case .update(_, let deletions, let insertions, let modifications):
                 tableView.performBatchUpdates({
                     tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
                                          with: .automatic)
@@ -48,10 +54,7 @@ final class ListViewController: UIViewController {
         }
     }
     
-    private func setNavi() {
-        let registerButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(registerButtonTapped))
-        navigationItem.leftBarButtonItem = registerButton
-        
+    func setNavi() {
         let sortButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
         sortButton.menu = {
             let deadlineSort = UIAction(title: "마감일 순으로 보기") { [weak self] _ in
@@ -72,13 +75,6 @@ final class ListViewController: UIViewController {
         }()
         navigationItem.rightBarButtonItem = sortButton
     }
-    
-    @objc private func registerButtonTapped() {
-        let vc = RegisterViewController()
-        let navi = UINavigationController(rootViewController: vc)
-        present(navi, animated: true)
-    }
-
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {

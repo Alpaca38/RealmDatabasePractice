@@ -11,8 +11,8 @@ import Toast
 
 final class RegisterViewController: UIViewController {
     
-    let registerView = RegisterView()
-    var date: Date?
+    private let registerView = RegisterView()
+    private var date: Date?
     
     override func loadView() {
         registerView.tableView.delegate = self

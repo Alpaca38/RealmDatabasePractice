@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */; };
+		D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */; };
+		D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */; };
+		D18A4F3D2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F3C2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift */; };
+		D18A4F3F2C34E0540001D7E8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F3E2C34E0540001D7E8 /* BaseCollectionViewCell.swift */; };
+		D18A4F412C3516E20001D7E8 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F402C3516E20001D7E8 /* CategoryList.swift */; };
 		D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587F92C33E28200F3E452 /* AppDelegate.swift */; };
 		D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */; };
 		D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FD2C33E28200F3E452 /* ListViewController.swift */; };
@@ -28,9 +34,16 @@
 		D1E588362C34075900F3E452 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588352C34075900F3E452 /* DateViewController.swift */; };
 		D1E588382C3409EC00F3E452 /* DatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */; };
 		D1E5883B2C34C28A00F3E452 /* RegisterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5883A2C34C28A00F3E452 /* RegisterOptions.swift */; };
+		D1E5883E2C34C79100F3E452 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5883D2C34C79100F3E452 /* CategoryListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
+		D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
+		D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListDelegate.swift; sourceTree = "<group>"; };
+		D18A4F3C2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCollectionViewCell.swift; sourceTree = "<group>"; };
+		D18A4F3E2C34E0540001D7E8 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		D18A4F402C3516E20001D7E8 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		D1E587F62C33E28200F3E452 /* RealmDatabasePractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmDatabasePractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E587F92C33E28200F3E452 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +64,7 @@
 		D1E588352C34075900F3E452 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDelegate.swift; sourceTree = "<group>"; };
 		D1E5883A2C34C28A00F3E452 /* RegisterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterOptions.swift; sourceTree = "<group>"; };
+		D1E5883D2C34C79100F3E452 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +100,7 @@
 		D1E587F82C33E28200F3E452 /* RealmDatabasePractice */ = {
 			isa = PBXGroup;
 			children = (
+				D1E5883C2C34C77800F3E452 /* CategoryList */,
 				D1E588392C34C28100F3E452 /* Enum */,
 				D1E588302C33FC8800F3E452 /* Extension */,
 				D1E588292C33ECD400F3E452 /* Register */,
@@ -108,6 +123,7 @@
 			children = (
 				D1E5880E2C33E41500F3E452 /* BaseView.swift */,
 				D1E588132C33E4EA00F3E452 /* BaseTableViewCell.swift */,
+				D18A4F3E2C34E0540001D7E8 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -127,6 +143,7 @@
 			children = (
 				D1E588212C33E5CD00F3E452 /* ReuseIdentifier.swift */,
 				D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */,
+				D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -153,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				D1E588312C33FC9400F3E452 /* Extension+UIViewController.swift */,
+				D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -161,8 +179,19 @@
 			isa = PBXGroup;
 			children = (
 				D1E5883A2C34C28A00F3E452 /* RegisterOptions.swift */,
+				D18A4F402C3516E20001D7E8 /* CategoryList.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		D1E5883C2C34C77800F3E452 /* CategoryList */ = {
+			isa = PBXGroup;
+			children = (
+				D1E5883D2C34C79100F3E452 /* CategoryListView.swift */,
+				D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */,
+				D18A4F3C2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift */,
+			);
+			path = CategoryList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,19 +276,26 @@
 			files = (
 				D1E588382C3409EC00F3E452 /* DatePickerDelegate.swift in Sources */,
 				D1E5883B2C34C28A00F3E452 /* RegisterOptions.swift in Sources */,
+				D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */,
 				D1E5881F2C33E5B400F3E452 /* ListTableViewCell.swift in Sources */,
 				D1E5882B2C33ECEC00F3E452 /* RegisterViewController.swift in Sources */,
 				D1E588362C34075900F3E452 /* DateViewController.swift in Sources */,
+				D18A4F3F2C34E0540001D7E8 /* BaseCollectionViewCell.swift in Sources */,
+				D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */,
 				D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */,
 				D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */,
 				D1E588122C33E48500F3E452 /* ListView.swift in Sources */,
 				D1E5882D2C33ED7B00F3E452 /* RegisterView.swift in Sources */,
 				D1E588282C33E91000F3E452 /* Todo.swift in Sources */,
 				D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */,
+				D18A4F3D2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift in Sources */,
 				D1E588322C33FC9400F3E452 /* Extension+UIViewController.swift in Sources */,
 				D1E588142C33E4EA00F3E452 /* BaseTableViewCell.swift in Sources */,
+				D1E5883E2C34C79100F3E452 /* CategoryListView.swift in Sources */,
+				D18A4F412C3516E20001D7E8 /* CategoryList.swift in Sources */,
 				D1E5880F2C33E41500F3E452 /* BaseView.swift in Sources */,
 				D1E5882F2C33F08200F3E452 /* RegisterTableViewCell.swift in Sources */,
+				D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */,
 				D1E588222C33E5CD00F3E452 /* ReuseIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
