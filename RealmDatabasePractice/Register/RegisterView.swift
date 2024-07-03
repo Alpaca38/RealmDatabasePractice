@@ -43,7 +43,7 @@ final class RegisterView: BaseView {
             $0.height.equalTo(100)
         }
         tableView.snp.makeConstraints {
-            $0.top.equalTo(contentTextField.snp.bottom)
+            $0.top.equalTo(contentTextField.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(self.safeAreaLayoutGuide)
         }

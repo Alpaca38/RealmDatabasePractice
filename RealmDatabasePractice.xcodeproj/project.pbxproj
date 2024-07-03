@@ -13,6 +13,8 @@
 		D18A4F3D2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F3C2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift */; };
 		D18A4F3F2C34E0540001D7E8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F3E2C34E0540001D7E8 /* BaseCollectionViewCell.swift */; };
 		D18A4F412C3516E20001D7E8 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F402C3516E20001D7E8 /* CategoryList.swift */; };
+		D18A4F442C35289B0001D7E8 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F432C35289B0001D7E8 /* TagViewController.swift */; };
+		D18A4F462C352CFC0001D7E8 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F452C352CFC0001D7E8 /* TagDelegate.swift */; };
 		D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587F92C33E28200F3E452 /* AppDelegate.swift */; };
 		D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */; };
 		D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FD2C33E28200F3E452 /* ListViewController.swift */; };
@@ -44,6 +46,8 @@
 		D18A4F3C2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCollectionViewCell.swift; sourceTree = "<group>"; };
 		D18A4F3E2C34E0540001D7E8 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		D18A4F402C3516E20001D7E8 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
+		D18A4F432C35289B0001D7E8 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		D18A4F452C352CFC0001D7E8 /* TagDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDelegate.swift; sourceTree = "<group>"; };
 		D1E587F62C33E28200F3E452 /* RealmDatabasePractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmDatabasePractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E587F92C33E28200F3E452 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D18A4F422C3528910001D7E8 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				D18A4F432C35289B0001D7E8 /* TagViewController.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
 		D1E587ED2C33E28200F3E452 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +112,7 @@
 		D1E587F82C33E28200F3E452 /* RealmDatabasePractice */ = {
 			isa = PBXGroup;
 			children = (
+				D18A4F422C3528910001D7E8 /* Tag */,
 				D1E5883C2C34C77800F3E452 /* CategoryList */,
 				D1E588392C34C28100F3E452 /* Enum */,
 				D1E588302C33FC8800F3E452 /* Extension */,
@@ -144,6 +157,7 @@
 				D1E588212C33E5CD00F3E452 /* ReuseIdentifier.swift */,
 				D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */,
 				D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */,
+				D18A4F452C352CFC0001D7E8 /* TagDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -283,6 +297,7 @@
 				D18A4F3F2C34E0540001D7E8 /* BaseCollectionViewCell.swift in Sources */,
 				D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */,
 				D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */,
+				D18A4F462C352CFC0001D7E8 /* TagDelegate.swift in Sources */,
 				D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */,
 				D1E588122C33E48500F3E452 /* ListView.swift in Sources */,
 				D1E5882D2C33ED7B00F3E452 /* RegisterView.swift in Sources */,
@@ -295,6 +310,7 @@
 				D18A4F412C3516E20001D7E8 /* CategoryList.swift in Sources */,
 				D1E5880F2C33E41500F3E452 /* BaseView.swift in Sources */,
 				D1E5882F2C33F08200F3E452 /* RegisterTableViewCell.swift in Sources */,
+				D18A4F442C35289B0001D7E8 /* TagViewController.swift in Sources */,
 				D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */,
 				D1E588222C33E5CD00F3E452 /* ReuseIdentifier.swift in Sources */,
 			);

@@ -13,6 +13,7 @@ final class RegisterViewController: UIViewController {
     
     private let registerView = RegisterView()
     private var date: Date?
+    private var tag: String?
     
     override func loadView() {
         registerView.tableView.delegate = self
@@ -46,7 +47,7 @@ private extension RegisterViewController {
             self.view.makeToast("제목이 비어있습니다. 제목을 입력해주세요.", duration: 2, position: .center)
             return
         }
-        let data = Todo(title: title, content: registerView.contentTextField.text, date: date)
+        let data = Todo(title: title, content: registerView.contentTextField.text, date: date, tag: tag)
         try! realm.write {
             realm.add(data)
         }
@@ -64,16 +65,33 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
         guard let option = RegisterOptions(rawValue: indexPath.row) else {
             return cell
         }
-        cell.configure(option: option, date: date)
+        cell.configure(option: option, date: date, tag: tag)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == RegisterOptions.allCases.firstIndex(of: .deadline) {
+        let selectedOptions = RegisterOptions.allCases[indexPath.row]
+        switch selectedOptions {
+        case .deadline:
             let vc = DateViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
+        case .tag:
+            let vc = TagViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        case .priority:
+            print("priority")
+        case .image:
+            print("image")
         }
+    }
+}
+
+extension RegisterViewController: TagDelegate {
+    func sendTag(_ text: String) {
+        self.tag = text
+        registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.tag.rawValue, section: 0)], with: .automatic)
     }
 }
 

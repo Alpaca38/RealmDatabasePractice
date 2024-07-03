@@ -9,9 +9,9 @@ import UIKit
 import RealmSwift
 
 final class CategoryListViewController: UIViewController {
-    let categoryListView = CategoryListView()
-    let realm = try! Realm()
-    var notificationToken: NotificationToken?
+    private let categoryListView = CategoryListView()
+    private let realm = try! Realm()
+    private var notificationToken: NotificationToken?
     
     override func loadView() {
         categoryListView.delegate = self
@@ -35,7 +35,7 @@ private extension CategoryListViewController {
             switch changes {
             case .initial(_):
                 collectionView.reloadData()
-            case .update(let collectionType, let deletions, let insertions, let modifications):
+            case .update(_, _, _, _):
                 collectionView.reloadData()
             case .error(let error):
                 fatalError("\(error)")
@@ -56,6 +56,27 @@ extension CategoryListViewController: UICollectionViewDelegate, UICollectionView
         }
         cell.configure(category: data)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCategory = CategoryList.allCases[indexPath.item]
+        switch selectedCategory {
+        case .today:
+            let vc = ListViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case .todo:
+            let vc = ListViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case .total:
+            let vc = ListViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case .flag:
+            let vc = ListViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case .complete:
+            let vc = ListViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     

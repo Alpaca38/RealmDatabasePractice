@@ -38,7 +38,8 @@ final class RegisterTableViewCell: BaseTableViewCell {
     
     override func configureLayout() {
         customView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.verticalEdges.equalToSuperview().inset(8)
         }
         titleLabel.snp.makeConstraints {
             $0.leading.verticalEdges.equalToSuperview().inset(20)
@@ -56,11 +57,17 @@ final class RegisterTableViewCell: BaseTableViewCell {
         }
     }
     
-    func configure(option: RegisterOptions, date: Date?) {
+    func configure(option: RegisterOptions, date: Date?, tag: String?) {
         titleLabel.text = option.optionString
         switch option {
         case .deadline:
             contentLabel.text = date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).weekday().locale(Locale(identifier: "ko-KR")))
+        case .tag:
+            contentLabel.text = tag
+        case .priority:
+            contentLabel.text = nil
+        case .image:
+            contentLabel.text = nil
         }
     }
 }

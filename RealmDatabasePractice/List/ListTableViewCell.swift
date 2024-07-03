@@ -27,27 +27,31 @@ final class ListTableViewCell: BaseTableViewCell {
         return view
     }()
     
+    private let tagLabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 14)
+        view.textColor = .blue
+        return view
+    }()
+    
     private lazy var labelStackView = {
-        let view = UIStackView(arrangedSubviews: [self.titleLabel, self.contentLabel, self.dateLabel])
+        let view = UIStackView(arrangedSubviews: [self.titleLabel, self.contentLabel, horizontalStackView])
         view.axis = .vertical
-        view.distribution = .equalSpacing
+        view.spacing = 2
+        view.alignment = .leading
+        self.contentView.addSubview(view)
+        return view
+    }()
+    
+    private lazy var horizontalStackView = {
+        let view = UIStackView(arrangedSubviews: [self.dateLabel, self.tagLabel])
+        view.axis = .horizontal
         view.alignment = .leading
         self.contentView.addSubview(view)
         return view
     }()
     
     override func configureLayout() {
-//        titleLabel.snp.makeConstraints {
-//            $0.top.horizontalEdges.equalToSuperview().inset(20)
-//        }
-//        contentLabel.snp.makeConstraints {
-//            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
-//            $0.horizontalEdges.equalToSuperview().inset(20)
-//        }
-//        dateLabel.snp.makeConstraints {
-//            $0.top.equalTo(contentLabel.snp.bottom).offset(8)
-//            $0.horizontalEdges.equalToSuperview().inset(20)
-//        }
         labelStackView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(20)
         }
@@ -57,5 +61,6 @@ final class ListTableViewCell: BaseTableViewCell {
         titleLabel.text = data.title
         contentLabel.text = data.content
         dateLabel.text = data.date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).locale(Locale(identifier: "ko-KR")))
+        tagLabel.text = data.hashTag
     }
 }

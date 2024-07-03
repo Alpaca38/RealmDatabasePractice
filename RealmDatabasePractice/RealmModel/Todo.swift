@@ -13,11 +13,21 @@ class Todo: Object {
     @Persisted var title: String
     @Persisted var content: String?
     @Persisted var date: Date?
+    @Persisted var tag: String?
     
-    convenience init(title: String, content: String?, date: Date?) {
+    var hashTag: String? {
+        if let tag = tag {
+            return "#\(tag)"
+        } else {
+            return nil
+        }
+    }
+    
+    convenience init(title: String, content: String?, date: Date?, tag: String?) {
         self.init()
         self.title = title
         self.content = content
         self.date = date
+        self.tag = tag
     }
 }
