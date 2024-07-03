@@ -19,6 +19,8 @@
 		D18A4F4B2C3535A30001D7E8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F4A2C3535A30001D7E8 /* BaseViewController.swift */; };
 		D18A4F4E2C3538FD0001D7E8 /* PriorityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F4D2C3538FD0001D7E8 /* PriorityDelegate.swift */; };
 		D18A4F502C3539C00001D7E8 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F4F2C3539C00001D7E8 /* Priority.swift */; };
+		D18A4F532C35480B0001D7E8 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F522C35480B0001D7E8 /* DetailView.swift */; };
+		D18A4F552C3548300001D7E8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F542C3548300001D7E8 /* DetailViewController.swift */; };
 		D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587F92C33E28200F3E452 /* AppDelegate.swift */; };
 		D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */; };
 		D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FD2C33E28200F3E452 /* ListViewController.swift */; };
@@ -56,6 +58,8 @@
 		D18A4F4A2C3535A30001D7E8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D18A4F4D2C3538FD0001D7E8 /* PriorityDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityDelegate.swift; sourceTree = "<group>"; };
 		D18A4F4F2C3539C00001D7E8 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		D18A4F522C35480B0001D7E8 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		D18A4F542C3548300001D7E8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D1E587F62C33E28200F3E452 /* RealmDatabasePractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmDatabasePractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E587F92C33E28200F3E452 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +121,15 @@
 			path = DatePicker;
 			sourceTree = "<group>";
 		};
+		D18A4F512C3548010001D7E8 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D18A4F522C35480B0001D7E8 /* DetailView.swift */,
+				D18A4F542C3548300001D7E8 /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		D1E587ED2C33E28200F3E452 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +149,7 @@
 		D1E587F82C33E28200F3E452 /* RealmDatabasePractice */ = {
 			isa = PBXGroup;
 			children = (
+				D18A4F512C3548010001D7E8 /* Detail */,
 				D18A4F4C2C3535EB0001D7E8 /* DatePicker */,
 				D18A4F472C35355D0001D7E8 /* Priority */,
 				D18A4F422C3528910001D7E8 /* Tag */,
@@ -329,11 +343,13 @@
 				D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */,
 				D18A4F462C352CFC0001D7E8 /* TagDelegate.swift in Sources */,
 				D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */,
+				D18A4F532C35480B0001D7E8 /* DetailView.swift in Sources */,
 				D1E588122C33E48500F3E452 /* ListView.swift in Sources */,
 				D1E5882D2C33ED7B00F3E452 /* RegisterView.swift in Sources */,
 				D1E588282C33E91000F3E452 /* Todo.swift in Sources */,
 				D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */,
 				D18A4F3D2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift in Sources */,
+				D18A4F552C3548300001D7E8 /* DetailViewController.swift in Sources */,
 				D1E588322C33FC9400F3E452 /* Extension+UIViewController.swift in Sources */,
 				D1E588142C33E4EA00F3E452 /* BaseTableViewCell.swift in Sources */,
 				D1E5883E2C34C79100F3E452 /* CategoryListView.swift in Sources */,

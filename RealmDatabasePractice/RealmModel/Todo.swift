@@ -16,6 +16,14 @@ class Todo: Object {
     @Persisted var tag: String?
     @Persisted var priority: String?
     
+    var dateString: String {
+        guard let date else {
+            return "없음"
+        }
+        
+        return date.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).weekday().locale(Locale(identifier: "ko-KR")))
+    }
+    
     var hashTag: String? {
         if let tag = tag?.trimmingCharacters(in: .whitespacesAndNewlines), !tag.isEmpty {
             return "#\(tag)"

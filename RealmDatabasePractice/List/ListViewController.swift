@@ -98,5 +98,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UISwipeActionsConfiguration(actions: [delete])
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let todo = list[indexPath.row]
+        let vc = DetailViewController()
+        vc.todo = todo
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
