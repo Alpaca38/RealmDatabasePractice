@@ -14,6 +14,7 @@ final class RegisterViewController: UIViewController {
     private let registerView = RegisterView()
     private var date: Date?
     private var tag: String?
+    private var priority: String?
     
     override func loadView() {
         registerView.tableView.delegate = self
@@ -47,7 +48,7 @@ private extension RegisterViewController {
             self.view.makeToast("제목이 비어있습니다. 제목을 입력해주세요.", duration: 2, position: .center)
             return
         }
-        let data = Todo(title: title, content: registerView.contentTextField.text, date: date, tag: tag)
+        let data = Todo(title: title, content: registerView.contentTextField.text, date: date, tag: tag, priority: priority)
         try! realm.write {
             realm.add(data)
         }
@@ -65,7 +66,7 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
         guard let option = RegisterOptions(rawValue: indexPath.row) else {
             return cell
         }
-        cell.configure(option: option, date: date, tag: tag)
+        cell.configure(option: option, date: date, tag: tag, priority: priority)
         return cell
     }
     
@@ -81,10 +82,19 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         case .priority:
-            print("priority")
+            let vc = PriorityViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
         case .image:
             print("image")
         }
+    }
+}
+
+extension RegisterViewController: PriorityDelegate {
+    func sendPriority(_ priority: String) {
+        self.priority = priority
+        registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.priority.rawValue, section: 0)], with: .automatic)
     }
 }
 

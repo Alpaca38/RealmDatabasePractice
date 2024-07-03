@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class TagViewController: UIViewController {
+final class TagViewController: BaseViewController {
     weak var delegate: TagDelegate?
     
     private lazy var tagTextField = {
@@ -18,18 +18,12 @@ final class TagViewController: UIViewController {
         return view
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        configureLayout()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         delegate?.sendTag(tagTextField.text!)
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         tagTextField.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             $0.height.equalTo(44)

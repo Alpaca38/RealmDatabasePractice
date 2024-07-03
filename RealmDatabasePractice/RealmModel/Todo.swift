@@ -14,20 +14,34 @@ class Todo: Object {
     @Persisted var content: String?
     @Persisted var date: Date?
     @Persisted var tag: String?
+    @Persisted var priority: String?
     
     var hashTag: String? {
-        if let tag = tag {
+        if let tag = tag?.trimmingCharacters(in: .whitespacesAndNewlines), !tag.isEmpty {
             return "#\(tag)"
         } else {
             return nil
         }
     }
     
-    convenience init(title: String, content: String?, date: Date?, tag: String?) {
+    var priorityTitle: String {
+        guard let priority, let priorityLevel = Priority(rawValue: priority) else { return title }
+        switch priorityLevel {
+        case .high:
+            return "!!! \(title)"
+        case .medium:
+            return "!! \(title)"
+        case .low:
+            return "! \(title)"
+        }
+    }
+    
+    convenience init(title: String, content: String?, date: Date?, tag: String?, priority: String?) {
         self.init()
         self.title = title
         self.content = content
         self.date = date
         self.tag = tag
+        self.priority = priority
     }
 }

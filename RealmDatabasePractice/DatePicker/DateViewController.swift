@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class DateViewController: UIViewController {
+final class DateViewController: BaseViewController {
     lazy var datePicker = {
         let view = UIDatePicker()
         view.datePickerMode = .date
@@ -23,12 +23,11 @@ final class DateViewController: UIViewController {
     weak var delegate: DatePickerDelegate?
     
     override func viewDidLoad() {
-        self.view.backgroundColor = .white
+        super.viewDidLoad()
         setNavi()
-        configureLayout()
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         datePicker.snp.makeConstraints {
             $0.center.equalToSuperview()
             let width = UIScreen.main.bounds.width - 40

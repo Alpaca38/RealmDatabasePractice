@@ -58,7 +58,7 @@ final class ListTableViewCell: BaseTableViewCell {
     }
     
     func configure(data: Todo) {
-        titleLabel.text = data.title
+        titleLabel.text = data.priorityTitle
         contentLabel.text = data.content
         dateLabel.text = data.date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).locale(Locale(identifier: "ko-KR")))
         tagLabel.text = data.hashTag

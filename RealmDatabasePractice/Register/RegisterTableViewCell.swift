@@ -57,7 +57,7 @@ final class RegisterTableViewCell: BaseTableViewCell {
         }
     }
     
-    func configure(option: RegisterOptions, date: Date?, tag: String?) {
+    func configure(option: RegisterOptions, date: Date?, tag: String?, priority: String?) {
         titleLabel.text = option.optionString
         switch option {
         case .deadline:
@@ -65,7 +65,7 @@ final class RegisterTableViewCell: BaseTableViewCell {
         case .tag:
             contentLabel.text = tag
         case .priority:
-            contentLabel.text = nil
+            contentLabel.text = priority
         case .image:
             contentLabel.text = nil
         }

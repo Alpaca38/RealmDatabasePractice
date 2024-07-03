@@ -15,6 +15,10 @@
 		D18A4F412C3516E20001D7E8 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F402C3516E20001D7E8 /* CategoryList.swift */; };
 		D18A4F442C35289B0001D7E8 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F432C35289B0001D7E8 /* TagViewController.swift */; };
 		D18A4F462C352CFC0001D7E8 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F452C352CFC0001D7E8 /* TagDelegate.swift */; };
+		D18A4F492C35356B0001D7E8 /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F482C35356B0001D7E8 /* PriorityViewController.swift */; };
+		D18A4F4B2C3535A30001D7E8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F4A2C3535A30001D7E8 /* BaseViewController.swift */; };
+		D18A4F4E2C3538FD0001D7E8 /* PriorityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F4D2C3538FD0001D7E8 /* PriorityDelegate.swift */; };
+		D18A4F502C3539C00001D7E8 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F4F2C3539C00001D7E8 /* Priority.swift */; };
 		D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587F92C33E28200F3E452 /* AppDelegate.swift */; };
 		D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */; };
 		D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FD2C33E28200F3E452 /* ListViewController.swift */; };
@@ -48,6 +52,10 @@
 		D18A4F402C3516E20001D7E8 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		D18A4F432C35289B0001D7E8 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		D18A4F452C352CFC0001D7E8 /* TagDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDelegate.swift; sourceTree = "<group>"; };
+		D18A4F482C35356B0001D7E8 /* PriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewController.swift; sourceTree = "<group>"; };
+		D18A4F4A2C3535A30001D7E8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D18A4F4D2C3538FD0001D7E8 /* PriorityDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityDelegate.swift; sourceTree = "<group>"; };
+		D18A4F4F2C3539C00001D7E8 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 		D1E587F62C33E28200F3E452 /* RealmDatabasePractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmDatabasePractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E587F92C33E28200F3E452 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +101,22 @@
 			path = Tag;
 			sourceTree = "<group>";
 		};
+		D18A4F472C35355D0001D7E8 /* Priority */ = {
+			isa = PBXGroup;
+			children = (
+				D18A4F482C35356B0001D7E8 /* PriorityViewController.swift */,
+			);
+			path = Priority;
+			sourceTree = "<group>";
+		};
+		D18A4F4C2C3535EB0001D7E8 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				D1E588352C34075900F3E452 /* DateViewController.swift */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
 		D1E587ED2C33E28200F3E452 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +136,8 @@
 		D1E587F82C33E28200F3E452 /* RealmDatabasePractice */ = {
 			isa = PBXGroup;
 			children = (
+				D18A4F4C2C3535EB0001D7E8 /* DatePicker */,
+				D18A4F472C35355D0001D7E8 /* Priority */,
 				D18A4F422C3528910001D7E8 /* Tag */,
 				D1E5883C2C34C77800F3E452 /* CategoryList */,
 				D1E588392C34C28100F3E452 /* Enum */,
@@ -126,7 +152,6 @@
 				D1E588022C33E28300F3E452 /* Assets.xcassets */,
 				D1E588042C33E28300F3E452 /* LaunchScreen.storyboard */,
 				D1E588072C33E28300F3E452 /* Info.plist */,
-				D1E588352C34075900F3E452 /* DateViewController.swift */,
 			);
 			path = RealmDatabasePractice;
 			sourceTree = "<group>";
@@ -137,6 +162,7 @@
 				D1E5880E2C33E41500F3E452 /* BaseView.swift */,
 				D1E588132C33E4EA00F3E452 /* BaseTableViewCell.swift */,
 				D18A4F3E2C34E0540001D7E8 /* BaseCollectionViewCell.swift */,
+				D18A4F4A2C3535A30001D7E8 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -158,6 +184,7 @@
 				D1E588372C3409EC00F3E452 /* DatePickerDelegate.swift */,
 				D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */,
 				D18A4F452C352CFC0001D7E8 /* TagDelegate.swift */,
+				D18A4F4D2C3538FD0001D7E8 /* PriorityDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -194,6 +221,7 @@
 			children = (
 				D1E5883A2C34C28A00F3E452 /* RegisterOptions.swift */,
 				D18A4F402C3516E20001D7E8 /* CategoryList.swift */,
+				D18A4F4F2C3539C00001D7E8 /* Priority.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -293,6 +321,8 @@
 				D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */,
 				D1E5881F2C33E5B400F3E452 /* ListTableViewCell.swift in Sources */,
 				D1E5882B2C33ECEC00F3E452 /* RegisterViewController.swift in Sources */,
+				D18A4F4B2C3535A30001D7E8 /* BaseViewController.swift in Sources */,
+				D18A4F4E2C3538FD0001D7E8 /* PriorityDelegate.swift in Sources */,
 				D1E588362C34075900F3E452 /* DateViewController.swift in Sources */,
 				D18A4F3F2C34E0540001D7E8 /* BaseCollectionViewCell.swift in Sources */,
 				D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */,
@@ -308,10 +338,12 @@
 				D1E588142C33E4EA00F3E452 /* BaseTableViewCell.swift in Sources */,
 				D1E5883E2C34C79100F3E452 /* CategoryListView.swift in Sources */,
 				D18A4F412C3516E20001D7E8 /* CategoryList.swift in Sources */,
+				D18A4F502C3539C00001D7E8 /* Priority.swift in Sources */,
 				D1E5880F2C33E41500F3E452 /* BaseView.swift in Sources */,
 				D1E5882F2C33F08200F3E452 /* RegisterTableViewCell.swift in Sources */,
 				D18A4F442C35289B0001D7E8 /* TagViewController.swift in Sources */,
 				D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */,
+				D18A4F492C35356B0001D7E8 /* PriorityViewController.swift in Sources */,
 				D1E588222C33E5CD00F3E452 /* ReuseIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
