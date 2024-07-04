@@ -71,12 +71,12 @@ private extension ListViewController {
         sortButton.menu = {
             let deadlineSort = UIAction(title: "마감일 순으로 보기") { [weak self] _ in
                 guard let self else { return }
-                list = repository.fetchSort(keyPath: "date")
+                list = repository.fetchSort(category: category, keyPath: "date")
                 listView.tableView.reloadData()
             }
             let titleSort = UIAction(title: "제목 순으로 보기") { [weak self] _ in
                 guard let self else { return }
-                list = repository.fetchSort(keyPath: "title")
+                list = repository.fetchSort(category: category, keyPath: "title")
                 listView.tableView.reloadData()
             }
             let menu = UIMenu(children: [deadlineSort, titleSort])

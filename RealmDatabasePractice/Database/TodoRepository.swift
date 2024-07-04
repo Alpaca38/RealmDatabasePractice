@@ -29,8 +29,9 @@ class TodoRepository {
         }
     }
     
-    func fetchSort(keyPath: String) -> Results<Todo> {
-        return realm.objects(Todo.self).sorted(byKeyPath: keyPath, ascending: true)
+    func fetchSort(category: CategoryList, keyPath: String) -> Results<Todo> {
+        let results = fetchFilter(category: category)
+        return results.sorted(byKeyPath: keyPath, ascending: true)
     }
     
     func fetchFilter(category: CategoryList) -> Results<Todo> {
