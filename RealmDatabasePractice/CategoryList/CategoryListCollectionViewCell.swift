@@ -57,7 +57,7 @@ final class CategoryListCollectionViewCell: BaseCollectionViewCell {
     }
     
     func configure(category: CategoryList) {
-        imageView.image = category.categoryImage?.withTintColor(category.tintColor, renderingMode: .alwaysOriginal)
+        imageView.image = category.categoryImage?.withTintColor(category.tintColor, renderingMode: .alwaysOriginal).withAlignmentRectInsets(UIEdgeInsets(top: -5, left: -5, bottom: -5, right: -5))
         countLabel.text = String(category.count)
         titleLabel.text = category.categoryTitle
     }
