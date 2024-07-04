@@ -8,11 +8,12 @@
 import UIKit
 import FSCalendar
 import RealmSwift
+import SnapKit
 
 final class CalendarViewController: UIViewController {
     private let repository = TodoRepository()
     private let calendarView = CalendarView()
-    var list: Results<Todo>! {
+    private var list: Results<Todo>! {
         didSet {
             calendarView.tableView.reloadData()
         }
@@ -33,6 +34,13 @@ final class CalendarViewController: UIViewController {
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         list = repository.fetchDate(date: date)
+    }
+    
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        calendar.snp.updateConstraints {
+            $0.height.equalTo(bounds.height)
+        }
+        calendar.layoutIfNeeded()
     }
 }
 

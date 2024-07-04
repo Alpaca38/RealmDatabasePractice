@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 import SnapKit
-class CalendarView: BaseView {
+final class CalendarView: BaseView {
     lazy var calendar = {
         let view = FSCalendar(frame: .zero)
         view.scope = .month
@@ -25,6 +25,11 @@ class CalendarView: BaseView {
         return view
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setGestures()
+    }
+    
     override func configureLayout() {
         calendar.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
@@ -36,5 +41,31 @@ class CalendarView: BaseView {
             $0.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }
+}
+
+private extension CalendarView {
+    func setGestures() {
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        swipeUp.direction = .up
+        calendar.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        swipeDown.direction = .down
+        calendar.addGestureRecognizer(swipeDown)
+    }
     
+    @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case .up:
+            if calendar.scope == .month {
+                calendar.setScope(.week, animated: true)
+            }
+        case .down:
+            if calendar.scope == .week {
+                calendar.setScope(.month, animated: true)
+            }
+        default:
+            break
+        }
+    }
 }

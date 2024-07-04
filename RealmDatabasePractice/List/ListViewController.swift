@@ -11,11 +11,11 @@ import Toast
 
 // DTO
 final class ListViewController: UIViewController {
-    let repository = TodoRepository()
-    var notificationToken: NotificationToken?
-    let listView = ListView()
-    var category: CategoryList
-    var list: Results<Todo>! {
+    private let repository = TodoRepository()
+    private var notificationToken: NotificationToken?
+    private let listView = ListView()
+    private var category: CategoryList
+    private var list: Results<Todo>! {
         didSet {
             listView.tableView.reloadData()
         }
