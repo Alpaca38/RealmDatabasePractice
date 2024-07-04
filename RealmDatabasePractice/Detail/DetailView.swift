@@ -9,6 +9,12 @@ import UIKit
 import SnapKit
 
 final class DetailView: BaseView {
+    private lazy var imageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        self.addSubview(view)
+        return view
+    }()
     private let titleLabel = {
         let view = UILabel()
         view.numberOfLines = 0
@@ -47,8 +53,13 @@ final class DetailView: BaseView {
     }()
     
     override func configureLayout() {
-        stackView.snp.makeConstraints {
+        imageView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.height.equalTo(400)
+        }
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(imageView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
         }
     }
     
@@ -62,5 +73,6 @@ final class DetailView: BaseView {
         dateLabel.text = "마감일: \(todo.dateString)"
         tagLabel.text = "태그: \(todo.hashTag ?? "없음")"
         prioirtyLabel.text = "우선순위: \(todo.priority ?? "없음")"
+        imageView.image = loadImageToDocument(filename: "\(todo.id)")
     }
 }

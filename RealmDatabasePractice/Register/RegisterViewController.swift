@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 import Toast
 
 final class RegisterViewController: UIViewController {
@@ -14,6 +15,7 @@ final class RegisterViewController: UIViewController {
     private var date: Date?
     private var tag: String?
     private var priority: String?
+    private var image: UIImage?
     
     override func loadView() {
         registerView.tableView.delegate = self
@@ -48,6 +50,9 @@ private extension RegisterViewController {
         }
         let data = Todo(title: title, content: registerView.contentTextField.text, date: date, tag: tag, priority: priority)
         repository.createItem(data: data)
+        if let image {
+            saveImageToDocument(image: image, filename: "\(data.id)")
+        }
         dismiss(animated: true)
     }
 }
@@ -62,7 +67,7 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
         guard let option = RegisterOptions(rawValue: indexPath.row) else {
             return cell
         }
-        cell.configure(option: option, date: date, tag: tag, priority: priority)
+        cell.configure(option: option, date: date, tag: tag, priority: priority, image: image)
         return cell
     }
     
@@ -82,7 +87,11 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         case .image:
-            print("image")
+            var configuration = PHPickerConfiguration()
+            configuration.filter = .any(of: [.screenshots, .images])
+            let picker = PHPickerViewController(configuration: configuration)
+            picker.delegate = self
+            present(picker, animated: true)
         }
     }
 }
@@ -106,4 +115,20 @@ extension RegisterViewController: DatePickerDelegate {
         self.date = date
         registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.deadline.rawValue, section: 0)], with: .automatic)
     }
+}
+
+extension RegisterViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                DispatchQueue.main.async {
+                    self.image = image as? UIImage
+                    self.registerView.tableView.reloadData()
+                }
+            }
+        }
+        dismiss(animated: true)
+    }
+    
+    
 }

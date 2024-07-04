@@ -14,6 +14,7 @@ final class RegisterTableViewCell: BaseTableViewCell {
         view.addSubview(self.titleLabel)
         view.addSubview(self.nextButton)
         view.addSubview(self.contentLabel)
+        view.addSubview(self.contentImageView)
         view.backgroundColor = .lightGray
         view.layer.cornerRadius = 8
         self.contentView.addSubview(view)
@@ -33,6 +34,12 @@ final class RegisterTableViewCell: BaseTableViewCell {
     private let contentLabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 14)
+        return view
+    }()
+    private let contentImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         return view
     }()
     
@@ -55,9 +62,14 @@ final class RegisterTableViewCell: BaseTableViewCell {
             $0.centerY.equalTo(titleLabel)
             $0.trailing.equalTo(nextButton.snp.leading).offset(-8)
         }
+        contentImageView.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalTo(nextButton.snp.leading).offset(-8)
+            $0.size.equalTo(40)
+        }
     }
     
-    func configure(option: RegisterOptions, date: Date?, tag: String?, priority: String?) {
+    func configure(option: RegisterOptions, date: Date?, tag: String?, priority: String?, image: UIImage?) {
         titleLabel.text = option.optionString
         switch option {
         case .deadline:
@@ -67,7 +79,7 @@ final class RegisterTableViewCell: BaseTableViewCell {
         case .priority:
             contentLabel.text = priority
         case .image:
-            contentLabel.text = nil
+            contentImageView.image = image
         }
     }
 }
