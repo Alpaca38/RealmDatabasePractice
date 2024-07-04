@@ -121,6 +121,10 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as! ListTableViewCell
         let data = list[indexPath.row]
         cell.configure(data: data)
+        cell.didCompleteButtonTapped = { [weak self] in
+            guard let self else { return }
+            listView.tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
         return cell
     }
     

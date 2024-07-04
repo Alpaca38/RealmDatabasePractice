@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 final class ListTableViewCell: BaseTableViewCell {
+    var didCompleteButtonTapped: (() -> Void)?
+    
     private let titleLabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 17)
@@ -34,25 +36,47 @@ final class ListTableViewCell: BaseTableViewCell {
         return view
     }()
     
-    private lazy var labelStackView = {
-        let view = UIStackView(arrangedSubviews: [self.titleLabel, self.contentLabel, horizontalStackView])
-        view.axis = .vertical
-        view.spacing = 2
+//    private lazy var completeButton = {
+//        let view = UIImageView()
+//        view.image = UIImage(systemName: "circle")
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(completeButtonTapped))
+//        view.addGestureRecognizer(tapGesture)
+//        view.isUserInteractionEnabled = true
+//        return view
+//    }()
+    lazy var completeButton = {
+        let view = UIButton()
+        view.setImage(UIImage(systemName: "circle"), for: .normal)
+        view.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+        return view
+    }()
+    
+    private lazy var horiziontalStackView = {
+        let view = UIStackView(arrangedSubviews: [self.completeButton, self.labelStackView])
+        view.axis = .horizontal
+        view.spacing = 8
         view.alignment = .leading
         self.contentView.addSubview(view)
         return view
     }()
     
-    private lazy var horizontalStackView = {
+    private lazy var labelStackView = {
+        let view = UIStackView(arrangedSubviews: [self.titleLabel, self.contentLabel, horizontalLabelStackView])
+        view.axis = .vertical
+        view.spacing = 2
+        view.alignment = .leading
+        return view
+    }()
+    
+    private lazy var horizontalLabelStackView = {
         let view = UIStackView(arrangedSubviews: [self.dateLabel, self.tagLabel])
         view.axis = .horizontal
         view.alignment = .leading
-        self.contentView.addSubview(view)
         return view
     }()
     
     override func configureLayout() {
-        labelStackView.snp.makeConstraints {
+        horiziontalStackView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(20)
         }
     }
@@ -62,5 +86,11 @@ final class ListTableViewCell: BaseTableViewCell {
         contentLabel.text = data.content
         dateLabel.text = data.date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).locale(Locale(identifier: "ko-KR")))
         tagLabel.text = data.hashTag
+    }
+}
+
+extension ListTableViewCell {
+    @objc func completeButtonTapped(_ sender: UIButton) {
+        didCompleteButtonTapped?()
     }
 }
