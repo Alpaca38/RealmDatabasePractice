@@ -15,6 +15,7 @@ class Todo: Object {
     @Persisted var date: Date?
     @Persisted var tag: String?
     @Persisted var priority: String?
+    @Persisted var isFlagged: Bool
     
     var dateString: String {
         guard let date else {
@@ -51,5 +52,6 @@ class Todo: Object {
         self.date = date
         self.tag = tag
         self.priority = priority
+        self.isFlagged = false
     }
 }

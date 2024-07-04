@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import Toast
 
 final class ListViewController: UIViewController {
     let listView = ListView()
@@ -56,7 +57,9 @@ private extension ListViewController {
         case .total:
             results = realm.objects(Todo.self)
         case .flag:
-            results = realm.objects(Todo.self)
+            results = realm.objects(Todo.self).where {
+                $0.isFlagged == true
+            }
         case .complete:
             results = realm.objects(Todo.self)
         }
@@ -119,6 +122,22 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let data = list[indexPath.row]
         cell.configure(data: data)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let flag = UIContextualAction(style: .normal, title: "깃발") { action, view, completion in
+            try! self.realm.write {
+                let data = self.list[indexPath.row]
+                if data.isFlagged {
+                    data.isFlagged = false
+                    self.view.makeToast("깃발이 해제 되었습니다.")
+                } else {
+                    data.isFlagged = true
+                    self.view.makeToast("깃발이 설정 되었습니다.")
+                }
+            }
+        }
+        return UISwipeActionsConfiguration(actions: [flag])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

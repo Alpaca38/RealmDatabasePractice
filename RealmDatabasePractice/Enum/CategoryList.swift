@@ -81,7 +81,9 @@ enum CategoryList: Int, CaseIterable {
         case .total:
             return realm.objects(Todo.self).count
         case .flag:
-            return 0
+            return realm.objects(Todo.self).where {
+                $0.isFlagged == true
+            }.count
         case .complete:
             return 0
         }
