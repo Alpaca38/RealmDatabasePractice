@@ -77,4 +77,13 @@ final class TodoRepository {
             print("Todo Create Error")
         }
     }
+    
+    func searchItem(category: CategoryList, _ text: String) -> Results<Todo> {
+        let results = fetchFilter(category: category)
+        let filter = results.where {
+            $0.title.contains(text, options: .caseInsensitive) || $0.content.contains(text, options: .caseInsensitive)
+        }
+        let result = text.isEmpty ? results : filter
+        return result
+    }
 }

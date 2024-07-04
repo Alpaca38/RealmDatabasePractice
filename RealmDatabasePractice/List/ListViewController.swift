@@ -9,12 +9,17 @@ import UIKit
 import RealmSwift
 import Toast
 
+// DTO
 final class ListViewController: UIViewController {
     let repository = TodoRepository()
-    let listView = ListView()
-    var list: Results<Todo>!
     var notificationToken: NotificationToken?
+    let listView = ListView()
     var category: CategoryList
+    var list: Results<Todo>! {
+        didSet {
+            listView.tableView.reloadData()
+        }
+    }
     
     init(category: CategoryList) {
         self.category = category
@@ -28,6 +33,7 @@ final class ListViewController: UIViewController {
     override func loadView() {
         listView.tableView.delegate = self
         listView.tableView.dataSource = self
+        listView.searchBar.delegate = self
         view = listView
     }
     override func viewDidLoad() {
@@ -131,3 +137,14 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension ListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        let filter = realm.objects(Table.self).where {
+//            $0.memoTitle.contains(searchText, options: .caseInsensitive)
+//        }
+//        let result = searchText.isEmpty ? realm.objects(Table.self) : filter
+//        list = result
+        list = repository.searchItem(category: category, searchText)
+        
+    }
+}
