@@ -6,12 +6,11 @@
 //
 
 import UIKit
-import RealmSwift
 import Toast
 
 final class RegisterViewController: UIViewController {
-    
     private let registerView = RegisterView()
+    private let repository = TodoRepository()
     private var date: Date?
     private var tag: String?
     private var priority: String?
@@ -43,15 +42,12 @@ private extension RegisterViewController {
     }
     
     @objc func addButtonTapped() {
-        let realm = try! Realm()
         guard let title = registerView.titleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !title.isEmpty else {
             self.view.makeToast("제목이 비어있습니다. 제목을 입력해주세요.", duration: 2, position: .center)
             return
         }
         let data = Todo(title: title, content: registerView.contentTextField.text, date: date, tag: tag, priority: priority)
-        try! realm.write {
-            realm.add(data)
-        }
+        repository.createItem(data: data)
         dismiss(animated: true)
     }
 }

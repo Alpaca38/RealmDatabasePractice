@@ -10,9 +10,9 @@ import RealmSwift
 import Toast
 
 final class ListViewController: UIViewController {
+    let repository = TodoRepository()
     let listView = ListView()
     var list: Results<Todo>!
-    let realm = try! Realm()
     var notificationToken: NotificationToken?
     var category: CategoryList
     
@@ -32,40 +32,17 @@ final class ListViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavi()
         setList()
+        setNavi()
     }
 }
 
 private extension ListViewController {
     func setList() {
         let results: Results<Todo>
-        switch category {
-        case .today:
-            let calendar = Calendar.current
-            let startOfDay = calendar.startOfDay(for: Date())
-            let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
-            results = realm.objects(Todo.self).where {
-                $0.date >= startOfDay && $0.date < endOfDay
-            }
-        case .todo:
-            let calendar = Calendar.current
-            let today = calendar.startOfDay(for: Date())
-            results = realm.objects(Todo.self).where {
-                $0.date >= today
-            }
-        case .total:
-            results = realm.objects(Todo.self)
-        case .flag:
-            results = realm.objects(Todo.self).where {
-                $0.isFlagged == true
-            }
-        case .complete:
-            results = realm.objects(Todo.self)
-        }
-        
+        results = repository.fetchFilter(category: category)
         list = results
-        print(realm.configuration.fileURL!)
+//        print(realm.configuration.fileURL!)
         
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.listView.tableView else { return }
@@ -94,14 +71,12 @@ private extension ListViewController {
         sortButton.menu = {
             let deadlineSort = UIAction(title: "마감일 순으로 보기") { [weak self] _ in
                 guard let self else { return }
-                let results = realm.objects(Todo.self).sorted(byKeyPath: "date", ascending: true)
-                list = results
+                list = repository.fetchSort(keyPath: "date")
                 listView.tableView.reloadData()
             }
             let titleSort = UIAction(title: "제목 순으로 보기") { [weak self] _ in
                 guard let self else { return }
-                let results = realm.objects(Todo.self).sorted(byKeyPath: "title", ascending: true)
-                list = results
+                list = repository.fetchSort(keyPath: "title")
                 listView.tableView.reloadData()
             }
             let menu = UIMenu(children: [deadlineSort, titleSort])
@@ -130,15 +105,11 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flag = UIContextualAction(style: .normal, title: "깃발") { action, view, completion in
-            try! self.realm.write {
-                let data = self.list[indexPath.row]
-                if data.isFlagged {
-                    data.isFlagged = false
-                    self.view.makeToast("깃발이 해제 되었습니다.")
-                } else {
-                    data.isFlagged = true
-                    self.view.makeToast("깃발이 설정 되었습니다.")
-                }
+            let data = self.list[indexPath.row]
+            self.repository.updateFlagged(data: data) {
+                self.view.makeToast("깃발이 해제 되었습니다.")
+            } isFlagged: {
+                self.view.makeToast("깃발이 설정 되었습니다.")
             }
         }
         return UISwipeActionsConfiguration(actions: [flag])
@@ -146,10 +117,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
-            try! self.realm.write {
-                let data = self.list[indexPath.row]
-                self.realm.delete(data)
-            }
+            let data = self.list[indexPath.row]
+            self.repository.deleteItem(data: data)
         }
         return UISwipeActionsConfiguration(actions: [delete])
     }

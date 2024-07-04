@@ -36,14 +36,6 @@ final class ListTableViewCell: BaseTableViewCell {
         return view
     }()
     
-//    private lazy var completeButton = {
-//        let view = UIImageView()
-//        view.image = UIImage(systemName: "circle")
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(completeButtonTapped))
-//        view.addGestureRecognizer(tapGesture)
-//        view.isUserInteractionEnabled = true
-//        return view
-//    }()
     lazy var completeButton = {
         let view = UIButton()
         view.setImage(UIImage(systemName: "circle"), for: .normal)

@@ -21,6 +21,7 @@
 		D18A4F502C3539C00001D7E8 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F4F2C3539C00001D7E8 /* Priority.swift */; };
 		D18A4F532C35480B0001D7E8 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F522C35480B0001D7E8 /* DetailView.swift */; };
 		D18A4F552C3548300001D7E8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F542C3548300001D7E8 /* DetailViewController.swift */; };
+		D18A4F5C2C3671130001D7E8 /* TodoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F5B2C3671130001D7E8 /* TodoRepository.swift */; };
 		D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587F92C33E28200F3E452 /* AppDelegate.swift */; };
 		D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */; };
 		D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E587FD2C33E28200F3E452 /* ListViewController.swift */; };
@@ -60,6 +61,7 @@
 		D18A4F4F2C3539C00001D7E8 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 		D18A4F522C35480B0001D7E8 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		D18A4F542C3548300001D7E8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D18A4F5B2C3671130001D7E8 /* TodoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepository.swift; sourceTree = "<group>"; };
 		D1E587F62C33E28200F3E452 /* RealmDatabasePractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmDatabasePractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E587F92C33E28200F3E452 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E587FB2C33E28200F3E452 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				D1E588272C33E91000F3E452 /* RealmModel.swift */,
+				D18A4F5B2C3671130001D7E8 /* TodoRepository.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */,
 				D1E5881F2C33E5B400F3E452 /* ListTableViewCell.swift in Sources */,
 				D1E5882B2C33ECEC00F3E452 /* RegisterViewController.swift in Sources */,
+				D18A4F5C2C3671130001D7E8 /* TodoRepository.swift in Sources */,
 				D18A4F4B2C3535A30001D7E8 /* BaseViewController.swift in Sources */,
 				D18A4F4E2C3538FD0001D7E8 /* PriorityDelegate.swift in Sources */,
 				D1E588362C34075900F3E452 /* DateViewController.swift in Sources */,
