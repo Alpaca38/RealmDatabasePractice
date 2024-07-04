@@ -8,24 +8,32 @@
 import Foundation
 import RealmSwift
 
-class TodoRepository {
+final class TodoRepository {
     private let realm = try! Realm()
     
     func createItem(data: Todo) {
-        try! realm.write {
-            realm.add(data)
+        do {
+            try realm.write {
+                realm.add(data)
+            }
+        } catch {
+            print("Todo Create Error")
         }
     }
     
     func updateFlagged(data: Todo, isNotFlagged: @escaping () -> Void, isFlagged: @escaping () -> Void) {
-        try! realm.write {
-            if data.isFlagged {
-                data.isFlagged = false
-                isNotFlagged()
-            } else {
-                data.isFlagged = true
-                isFlagged()
+        do {
+            try realm.write {
+                if data.isFlagged {
+                    data.isFlagged = false
+                    isNotFlagged()
+                } else {
+                    data.isFlagged = true
+                    isFlagged()
+                }
             }
+        } catch {
+            print("Todo UpdateFlagged Error")
         }
     }
     
@@ -61,8 +69,12 @@ class TodoRepository {
     }
     
     func deleteItem(data: Todo) {
-        try! realm.write {
-            realm.delete(data)
+        do {
+            try realm.write {
+                realm.delete(data)
+            }
+        } catch {
+            print("Todo Create Error")
         }
     }
 }

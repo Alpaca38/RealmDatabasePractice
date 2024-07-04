@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Todo: Object {
+final class Todo: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
     @Persisted var content: String?
