@@ -10,7 +10,7 @@ import RealmSwift
 
 final class CategoryListViewController: UIViewController {
     private let categoryListView = CategoryListView()
-    private let realm = try! Realm()
+    private let repository = TodoRepository()
     private var notificationToken: NotificationToken?
     
     override func loadView() {
@@ -23,12 +23,23 @@ final class CategoryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setObserveTodoTable()
+        setNavi()
     }
 }
 
 private extension CategoryListViewController {
+    func setNavi() {
+        let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonTapped))
+        navigationItem.leftBarButtonItem = calendarButton
+    }
+    
+    @objc func calendarButtonTapped() {
+        let vc = CalendarViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func setObserveTodoTable() {
-        let results = realm.objects(Todo.self)
+        let results = repository.fetchAll()
         
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
             guard let collectionView = self?.categoryListView.collectionView else { return }
@@ -78,8 +89,6 @@ extension CategoryListViewController: UICollectionViewDelegate, UICollectionView
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    
 }
 
 extension CategoryListViewController: CategoryListDelegate {

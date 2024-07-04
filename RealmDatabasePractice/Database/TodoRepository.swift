@@ -53,9 +53,22 @@ final class TodoRepository {
         }
     }
     
+    func fetchAll() -> Results<Todo> {
+        return realm.objects(Todo.self)
+    }
+    
     func fetchSort(category: CategoryList, keyPath: String) -> Results<Todo> {
         let results = fetchFilter(category: category)
         return results.sorted(byKeyPath: keyPath, ascending: true)
+    }
+    
+    func fetchDate(date: Date) -> Results<Todo> {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        return realm.objects(Todo.self).where {
+            $0.date >= startOfDay && $0.date < endOfDay
+        }
     }
     
     func fetchFilter(category: CategoryList) -> Results<Todo> {
