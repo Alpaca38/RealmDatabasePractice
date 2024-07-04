@@ -37,6 +37,22 @@ final class TodoRepository {
         }
     }
     
+    func updateCompleted(data: Todo, isNotCompleted: @escaping () -> Void, isCompleted: @escaping () -> Void) {
+        do {
+            try realm.write {
+                if data.isComplete {
+                    data.isComplete = false
+                    isNotCompleted()
+                } else {
+                    data.isComplete = true
+                    isCompleted()
+                }
+            }
+        } catch {
+            print("Todo UpdateFlagged Error")
+        }
+    }
+    
     func fetchSort(category: CategoryList, keyPath: String) -> Results<Todo> {
         let results = fetchFilter(category: category)
         return results.sorted(byKeyPath: keyPath, ascending: true)
@@ -64,7 +80,9 @@ final class TodoRepository {
                 $0.isFlagged == true
             }
         case .complete:
-            return realm.objects(Todo.self)
+            return realm.objects(Todo.self).where {
+                $0.isComplete == true
+            }
         }
     }
     

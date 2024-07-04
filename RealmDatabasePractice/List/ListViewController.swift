@@ -101,6 +101,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as! ListTableViewCell
         let data = list[indexPath.row]
+        cell.data = data
         cell.configure(data: data)
         cell.didCompleteButtonTapped = { [weak self] in
             guard let self else { return }
@@ -139,12 +140,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        let filter = realm.objects(Table.self).where {
-//            $0.memoTitle.contains(searchText, options: .caseInsensitive)
-//        }
-//        let result = searchText.isEmpty ? realm.objects(Table.self) : filter
-//        list = result
         list = repository.searchItem(category: category, searchText)
-        
     }
 }

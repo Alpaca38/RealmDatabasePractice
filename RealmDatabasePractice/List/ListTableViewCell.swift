@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 
 final class ListTableViewCell: BaseTableViewCell {
+    let repository = TodoRepository()
     var didCompleteButtonTapped: (() -> Void)?
+    var data: Todo?
     
     private let titleLabel = {
         let view = UILabel()
@@ -36,9 +38,8 @@ final class ListTableViewCell: BaseTableViewCell {
         return view
     }()
     
-    lazy var completeButton = {
+    private lazy var completeButton = {
         let view = UIButton()
-        view.setImage(UIImage(systemName: "circle"), for: .normal)
         view.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
         return view
     }()
@@ -78,11 +79,26 @@ final class ListTableViewCell: BaseTableViewCell {
         contentLabel.text = data.content
         dateLabel.text = data.date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).locale(Locale(identifier: "ko-KR")))
         tagLabel.text = data.hashTag
+        var image: UIImage?
+        if data.isComplete {
+            image = UIImage(systemName: "circle.fill")
+        } else {
+            image = UIImage(systemName: "circle")
+        }
+        completeButton.setImage(image, for: .normal)
     }
 }
 
 extension ListTableViewCell {
-    @objc func completeButtonTapped(_ sender: UIButton) {
+    @objc func completeButtonTapped() {
+        guard let data else { return }
+        var image: UIImage?
+        repository.updateCompleted(data: data) {
+            image = UIImage(systemName: "circle")
+        } isCompleted: {
+            image = UIImage(systemName: "circle.fill")
+        }
+        completeButton.setImage(image, for: .normal)
         didCompleteButtonTapped?()
     }
 }

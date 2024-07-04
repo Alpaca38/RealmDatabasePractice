@@ -14,13 +14,10 @@ extension UIViewController {
             for: .documentDirectory,
             in: .userDomainMask).first else { return }
         
-        //이미지를 저장할 경로(파일명) 지정
         let fileURL = documentDirectory.appendingPathComponent("\(filename).jpg")
         
-        //이미지 압축
         guard let data = image.jpegData(compressionQuality: 0.5) else { return }
         
-        //이미지 파일 저장
         do {
             try data.write(to: fileURL)
         } catch {
@@ -59,7 +56,6 @@ extension UIView {
          
         let fileURL = documentDirectory.appendingPathComponent("\(filename).jpg")
         
-        //이 경로에 실제로 파일이 존재하는 지 확인
         if FileManager.default.fileExists(atPath: fileURL.path()) {
             return UIImage(contentsOfFile: fileURL.path())
         } else {
