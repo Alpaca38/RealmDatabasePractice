@@ -12,7 +12,6 @@ import Toast
 // DTO
 final class ListViewController: UIViewController {
     private let repository = TodoRepository()
-    private var notificationToken: NotificationToken?
     private let listView = ListView()
     private var category: CategoryList
     private var list: Results<Todo>! {
@@ -45,12 +44,8 @@ final class ListViewController: UIViewController {
 
 private extension ListViewController {
     func setList() {
-        let results: Results<Todo>
-        results = repository.fetchFilter(category: category)
-        list = results
-//        print(realm.configuration.fileURL!)
-        
-        notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
+        list = repository.fetchFilter(category: category)
+        repository.setNotificationToken(category: category) { [weak self] (changes) in
             guard let tableView = self?.listView.tableView else { return }
             switch changes {
             case .initial(_):
@@ -69,6 +64,7 @@ private extension ListViewController {
             case .error(let error):
                 fatalError("\(error)")
             }
+            
         }
     }
     
@@ -125,7 +121,36 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
             let data = self.list[indexPath.row]
-            self.repository.deleteItem(data: data)
+            
+            self.repository.notificationToken?.invalidate()
+            self.repository.deleteItem(data: data) {
+                tableView.performBatchUpdates({
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }, completion: { finished in
+                    self.repository.setNotificationToken(category: self.category) { [weak self] (changes) in
+                        guard let tableView = self?.listView.tableView else { return }
+                        switch changes {
+                        case .initial(_):
+                            tableView.reloadData()
+                        case .update(_, let deletions, let insertions, let modifications):
+                            tableView.performBatchUpdates({
+                                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                                     with: .automatic)
+                                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                                     with: .automatic)
+                                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                                     with: .automatic)
+                            }, completion: { finished in
+                                // ...
+                            })
+                        case .error(let error):
+                            fatalError("\(error)")
+                        }
+                        
+                    }
+                })
+                
+            }
         }
         return UISwipeActionsConfiguration(actions: [delete])
     }

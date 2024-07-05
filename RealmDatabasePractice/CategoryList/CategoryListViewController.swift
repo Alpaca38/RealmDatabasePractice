@@ -6,12 +6,10 @@
 //
 
 import UIKit
-import RealmSwift
 
 final class CategoryListViewController: UIViewController {
     private let categoryListView = CategoryListView()
     private let repository = TodoRepository()
-    private var notificationToken: NotificationToken?
     
     override func loadView() {
         categoryListView.delegate = self
@@ -39,14 +37,12 @@ private extension CategoryListViewController {
     }
     
     func setObserveTodoTable() {
-        let results = repository.fetchAll()
-        
-        notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
+        repository.setNotificationToken { [weak self] changes in
             guard let collectionView = self?.categoryListView.collectionView else { return }
             switch changes {
-            case .initial(_):
+            case .initial(let collectionType):
                 collectionView.reloadData()
-            case .update(_, _, _, _):
+            case .update(let collectionType, let deletions, let insertions, let modifications):
                 collectionView.reloadData()
             case .error(let error):
                 fatalError("\(error)")

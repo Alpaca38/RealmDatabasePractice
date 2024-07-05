@@ -10,6 +10,7 @@ import RealmSwift
 
 final class TodoRepository {
     private let realm = try! Realm()
+    var notificationToken: NotificationToken?
     
     func createItem(data: Todo) {
         do {
@@ -99,10 +100,11 @@ final class TodoRepository {
         }
     }
     
-    func deleteItem(data: Todo) {
+    func deleteItem(data: Todo, completion: @escaping () -> Void) {
         do {
             try realm.write {
                 realm.delete(data)
+                completion()
             }
         } catch {
             print("Todo Create Error")
@@ -116,5 +118,31 @@ final class TodoRepository {
         }
         let result = text.isEmpty ? results : filter
         return result
+    }
+    
+    func setNotificationToken(category: CategoryList , completion: @escaping (RealmCollectionChange<Any>) -> Void) {
+        notificationToken = fetchFilter(category: category).observe { (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial(_):
+                completion(.initial(Any.self))
+            case .update(let collectionType, let deletions, let insertions, let modifications):
+                completion(.update(Any.self, deletions: [], insertions: [], modifications: []))
+            case .error(let error):
+                completion(.error(error))
+            }
+        }
+    }
+    
+    func setNotificationToken(completion: @escaping (RealmCollectionChange<Any>) -> Void) {
+        notificationToken = fetchAll().observe { (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial(_):
+                completion(.initial(Any.self))
+            case .update(let collectionType, let deletions, let insertions, let modifications):
+                completion(.update(Any.self, deletions: [], insertions: [], modifications: []))
+            case .error(let error):
+                completion(.error(error))
+            }
+        }
     }
 }
