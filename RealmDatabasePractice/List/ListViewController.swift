@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RealmSwift
 import Toast
 
 // DTO
@@ -14,7 +13,7 @@ final class ListViewController: UIViewController {
     private let repository = TodoRepository()
     private let listView = ListView()
     private var category: CategoryList
-    private var list: Results<Todo>! {
+    private var list: [Todo] = [] {
         didSet {
             listView.tableView.reloadData()
         }
@@ -37,49 +36,23 @@ final class ListViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        setList()
+        list = repository.fetchFilterAsArray(category: category)
         setNavi()
+        
     }
 }
 
 private extension ListViewController {
-    func setList() {
-        list = repository.fetchFilter(category: category)
-        repository.setNotificationToken(category: category) { [weak self] (changes) in
-            guard let tableView = self?.listView.tableView else { return }
-            switch changes {
-            case .initial(_):
-                tableView.reloadData()
-            case .update(_, let deletions, let insertions, let modifications):
-                tableView.performBatchUpdates({
-                    tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
-                                         with: .automatic)
-                    tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
-                                         with: .automatic)
-                    tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
-                                         with: .automatic)
-                }, completion: { finished in
-                    // ...
-                })
-            case .error(let error):
-                fatalError("\(error)")
-            }
-            
-        }
-    }
-    
     func setNavi() {
         let sortButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
         sortButton.menu = {
             let deadlineSort = UIAction(title: "마감일 순으로 보기") { [weak self] _ in
                 guard let self else { return }
-                list = repository.fetchSort(category: category, keyPath: "date")
-                listView.tableView.reloadData()
+                list = repository.fetchSortAsArray(category: category, keyPath: "date")
             }
             let titleSort = UIAction(title: "제목 순으로 보기") { [weak self] _ in
                 guard let self else { return }
-                list = repository.fetchSort(category: category, keyPath: "title")
-                listView.tableView.reloadData()
+                list = repository.fetchSortAsArray(category: category, keyPath: "title")
             }
             let menu = UIMenu(children: [deadlineSort, titleSort])
             
@@ -121,36 +94,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
             let data = self.list[indexPath.row]
-            
-            self.repository.notificationToken?.invalidate()
-            self.repository.deleteItem(data: data) {
-                tableView.performBatchUpdates({
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                }, completion: { finished in
-                    self.repository.setNotificationToken(category: self.category) { [weak self] (changes) in
-                        guard let tableView = self?.listView.tableView else { return }
-                        switch changes {
-                        case .initial(_):
-                            tableView.reloadData()
-                        case .update(_, let deletions, let insertions, let modifications):
-                            tableView.performBatchUpdates({
-                                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
-                                                     with: .automatic)
-                                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
-                                                     with: .automatic)
-                                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
-                                                     with: .automatic)
-                            }, completion: { finished in
-                                // ...
-                            })
-                        case .error(let error):
-                            fatalError("\(error)")
-                        }
-                        
-                    }
-                })
-                
-            }
+            self.repository.deleteItem(data: data)
+            self.list.remove(at: indexPath.row)
         }
         return UISwipeActionsConfiguration(actions: [delete])
     }
@@ -165,6 +110,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        list = repository.searchItem(category: category, searchText)
+        list = repository.searchItemAsArray(category: category, searchText)
     }
 }

@@ -100,11 +100,23 @@ final class TodoRepository {
         }
     }
     
-    func deleteItem(data: Todo, completion: @escaping () -> Void) {
+    func fetchAllAsArray() -> [Todo] {
+        return Array(realm.objects(Todo.self))
+    }
+    
+    func fetchFilterAsArray(category: CategoryList) -> [Todo] {
+        return Array(fetchFilter(category: category))
+    }
+    
+    func fetchSortAsArray(category: CategoryList, keyPath: String) -> [Todo] {
+        let results = fetchFilter(category: category)
+        return Array(results.sorted(byKeyPath: keyPath, ascending: true))
+    }
+    
+    func deleteItem(data: Todo) {
         do {
             try realm.write {
                 realm.delete(data)
-                completion()
             }
         } catch {
             print("Todo Create Error")
@@ -118,6 +130,15 @@ final class TodoRepository {
         }
         let result = text.isEmpty ? results : filter
         return result
+    }
+    
+    func searchItemAsArray(category: CategoryList, _ text: String) -> [Todo] {
+        let results = fetchFilter(category: category)
+        let filter = results.where {
+            $0.title.contains(text, options: .caseInsensitive) || $0.content.contains(text, options: .caseInsensitive)
+        }
+        let result = text.isEmpty ? results : filter
+        return Array(result)
     }
     
     func setNotificationToken(category: CategoryList , completion: @escaping (RealmCollectionChange<Any>) -> Void) {
