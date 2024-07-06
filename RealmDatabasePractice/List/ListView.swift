@@ -9,12 +9,6 @@ import UIKit
 import SnapKit
 
 final class ListView: BaseView {
-    lazy var searchBar = {
-        let view = UISearchBar()
-        self.addSubview(view)
-        return view
-    }()
-    
     lazy var tableView = {
         let view = UITableView()
         view.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
@@ -23,14 +17,8 @@ final class ListView: BaseView {
     }()
     
     override func configureLayout() {
-        searchBar.snp.makeConstraints {
-            $0.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
-            $0.height.equalTo(44)
-        }
-        
         tableView.snp.makeConstraints {
-            $0.top.equalTo(searchBar.snp.bottom)
-            $0.bottom.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+            $0.edges.equalTo(self.safeAreaLayoutGuide)
         }
     }
     

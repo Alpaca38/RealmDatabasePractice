@@ -18,6 +18,7 @@ final class ListViewController: UIViewController {
             listView.tableView.reloadData()
         }
     }
+    private let searchController = UISearchController(searchResultsController: nil)
     
     init(category: CategoryList) {
         self.category = category
@@ -31,19 +32,28 @@ final class ListViewController: UIViewController {
     override func loadView() {
         listView.tableView.delegate = self
         listView.tableView.dataSource = self
-        listView.searchBar.delegate = self
         view = listView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         list = repository.fetchFilterAsArray(category: category)
         setNavi()
-        
+        setSearchController()
     }
 }
 
 private extension ListViewController {
+    func setSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "제목 및 내용을 검색할 수 있습니다."
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
     func setNavi() {
+        title = category.categoryTitle
         let sortButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
         sortButton.menu = {
             let deadlineSort = UIAction(title: "마감일 순으로 보기") { [weak self] _ in
@@ -59,6 +69,12 @@ private extension ListViewController {
             return menu
         }()
         navigationItem.rightBarButtonItem = sortButton
+    }
+}
+
+extension ListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        list = repository.searchItemAsArray(category: category, searchController.searchBar.text!)
     }
 }
 
@@ -105,11 +121,5 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = DetailViewController()
         vc.todo = todo
         navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-extension ListViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        list = repository.searchItemAsArray(category: category, searchText)
     }
 }

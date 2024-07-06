@@ -40,9 +40,9 @@ private extension CategoryListViewController {
         repository.setNotificationToken { [weak self] changes in
             guard let collectionView = self?.categoryListView.collectionView else { return }
             switch changes {
-            case .initial(let collectionType):
+            case .initial(_):
                 collectionView.reloadData()
-            case .update(let collectionType, let deletions, let insertions, let modifications):
+            case .update(_, _, _, _):
                 collectionView.reloadData()
             case .error(let error):
                 fatalError("\(error)")
