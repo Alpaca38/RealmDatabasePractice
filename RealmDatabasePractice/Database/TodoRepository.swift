@@ -10,7 +10,7 @@ import RealmSwift
 
 final class TodoRepository {
     private let realm = try! Realm()
-    var notificationToken: NotificationToken?
+    private var notificationToken: NotificationToken?
     
     func createItem(data: Todo) {
         do {
@@ -146,7 +146,7 @@ final class TodoRepository {
             switch changes {
             case .initial(_):
                 completion(.initial(Any.self))
-            case .update(let collectionType, let deletions, let insertions, let modifications):
+            case .update(_, _, _, _):
                 completion(.update(Any.self, deletions: [], insertions: [], modifications: []))
             case .error(let error):
                 completion(.error(error))
@@ -159,7 +159,7 @@ final class TodoRepository {
             switch changes {
             case .initial(_):
                 completion(.initial(Any.self))
-            case .update(let collectionType, let deletions, let insertions, let modifications):
+            case .update(_, _, _, _):
                 completion(.update(Any.self, deletions: [], insertions: [], modifications: []))
             case .error(let error):
                 completion(.error(error))

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class DateViewController: BaseViewController {
-    lazy var datePicker = {
+    private lazy var datePicker = {
         let view = UIDatePicker()
         view.datePickerMode = .date
         view.preferredDatePickerStyle = .inline

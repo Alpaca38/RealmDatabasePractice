@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class ListTableViewCell: BaseTableViewCell {
-    let repository = TodoRepository()
+    private let repository = TodoRepository()
     var didCompleteButtonTapped: (() -> Void)?
     var data: Todo?
     
@@ -89,7 +89,7 @@ final class ListTableViewCell: BaseTableViewCell {
     }
 }
 
-extension ListTableViewCell {
+private extension ListTableViewCell {
     @objc func completeButtonTapped() {
         guard let data else { return }
         var image: UIImage?
