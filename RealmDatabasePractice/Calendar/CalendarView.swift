@@ -13,7 +13,7 @@ final class CalendarView: BaseView {
         let view = FSCalendar(frame: .zero)
         view.scope = .month
         view.locale = Locale(identifier: "ko-KR")
-        view.layoutIfNeeded()
+        view.appearance.headerDateFormat = "YYYY년 M월"
         self.addSubview(view)
         return view
     }()
@@ -32,13 +32,14 @@ final class CalendarView: BaseView {
     
     override func configureLayout() {
         calendar.snp.makeConstraints {
-            $0.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.top.equalTo(safeAreaLayoutGuide)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
             $0.height.equalTo(300)
         }
         
         tableView.snp.makeConstraints {
             $0.top.equalTo(calendar.snp.bottom)
-            $0.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
+            $0.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
     }
 }

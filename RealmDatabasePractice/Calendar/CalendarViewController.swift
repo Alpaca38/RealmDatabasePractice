@@ -18,16 +18,18 @@ final class CalendarViewController: UIViewController {
             calendarView.tableView.reloadData()
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        list = repository.fetchAll()
-    }
+    
     override func loadView() {
         calendarView.calendar.delegate = self
         calendarView.calendar.dataSource = self
         calendarView.tableView.delegate = self
         calendarView.tableView.dataSource = self
         view = calendarView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        list = repository.fetchAll()
     }
 }
 
