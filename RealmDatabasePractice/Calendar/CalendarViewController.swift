@@ -32,6 +32,10 @@ final class CalendarViewController: UIViewController {
 }
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        return repository.fetchDate(date: date).count
+    }
+    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         list = repository.fetchDate(date: date)
     }
