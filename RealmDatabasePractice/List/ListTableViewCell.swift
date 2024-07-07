@@ -75,6 +75,11 @@ final class ListTableViewCell: BaseTableViewCell {
     }
     
     func configure(data: Todo) {
+        if data.isFlagged {
+            backgroundColor = .systemOrange
+        } else {
+            backgroundColor = .white
+        }
         titleLabel.text = data.priorityTitle
         contentLabel.text = data.content
         dateLabel.text = data.date?.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits).locale(Locale(identifier: "ko-KR")))

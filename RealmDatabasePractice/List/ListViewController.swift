@@ -103,6 +103,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             } isFlagged: {
                 self.view.makeToast("깃발이 설정 되었습니다.")
             }
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
         return UISwipeActionsConfiguration(actions: [flag])
     }
