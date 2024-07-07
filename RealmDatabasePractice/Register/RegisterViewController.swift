@@ -20,11 +20,17 @@ final class RegisterViewController: UIViewController {
     override func loadView() {
         registerView.tableView.delegate = self
         registerView.tableView.dataSource = self
+        registerView.titleTextField.delegate = self
+        registerView.contentTextField.delegate = self
         view = registerView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavi()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
 }
@@ -129,6 +135,11 @@ extension RegisterViewController: PHPickerViewControllerDelegate {
         }
         dismiss(animated: true)
     }
-    
-    
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
 }
