@@ -10,6 +10,8 @@
 		D10DA99B2C3BE10F001F25FF /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA99A2C3BE10F001F25FF /* FolderView.swift */; };
 		D10DA99D2C3BE126001F25FF /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA99C2C3BE126001F25FF /* FolderViewController.swift */; };
 		D10DA99F2C3BE367001F25FF /* FolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA99E2C3BE367001F25FF /* FolderRepository.swift */; };
+		D10DA9A22C3BF2C3001F25FF /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9A12C3BF2C3001F25FF /* TabbarController.swift */; };
+		D10DA9A52C3BF342001F25FF /* TotalSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9A42C3BF342001F25FF /* TotalSearchViewController.swift */; };
 		D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */; };
 		D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */; };
 		D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */; };
@@ -57,6 +59,8 @@
 		D10DA99A2C3BE10F001F25FF /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		D10DA99C2C3BE126001F25FF /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		D10DA99E2C3BE367001F25FF /* FolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRepository.swift; sourceTree = "<group>"; };
+		D10DA9A12C3BF2C3001F25FF /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		D10DA9A42C3BF342001F25FF /* TotalSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSearchViewController.swift; sourceTree = "<group>"; };
 		D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,22 @@
 			path = Folder;
 			sourceTree = "<group>";
 		};
+		D10DA9A02C3BF2BA001F25FF /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				D10DA9A12C3BF2C3001F25FF /* TabbarController.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		D10DA9A32C3BF336001F25FF /* TotalSearch */ = {
+			isa = PBXGroup;
+			children = (
+				D10DA9A42C3BF342001F25FF /* TotalSearchViewController.swift */,
+			);
+			path = TotalSearch;
+			sourceTree = "<group>";
+		};
 		D18A4F422C3528910001D7E8 /* Tag */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +203,8 @@
 		D1E587F82C33E28200F3E452 /* RealmDatabasePractice */ = {
 			isa = PBXGroup;
 			children = (
+				D10DA9A32C3BF336001F25FF /* TotalSearch */,
+				D10DA9A02C3BF2BA001F25FF /* Custom */,
 				D10DA9992C3BE104001F25FF /* Folder */,
 				D18A4F612C36A35E0001D7E8 /* Calendar */,
 				D18A4F512C3548010001D7E8 /* Detail */,
@@ -374,6 +396,7 @@
 				D1E588382C3409EC00F3E452 /* DatePickerDelegate.swift in Sources */,
 				D1E5883B2C34C28A00F3E452 /* RegisterOptions.swift in Sources */,
 				D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */,
+				D10DA9A52C3BF342001F25FF /* TotalSearchViewController.swift in Sources */,
 				D18A4F602C368E210001D7E8 /* Extension+FileManager.swift in Sources */,
 				D1E5881F2C33E5B400F3E452 /* ListTableViewCell.swift in Sources */,
 				D18A4F652C36A3740001D7E8 /* CalendarViewController.swift in Sources */,
@@ -387,6 +410,7 @@
 				D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */,
 				D18A4F462C352CFC0001D7E8 /* TagDelegate.swift in Sources */,
 				D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */,
+				D10DA9A22C3BF2C3001F25FF /* TabbarController.swift in Sources */,
 				D18A4F532C35480B0001D7E8 /* DetailView.swift in Sources */,
 				D10DA99F2C3BE367001F25FF /* FolderRepository.swift in Sources */,
 				D1E588122C33E48500F3E452 /* ListView.swift in Sources */,

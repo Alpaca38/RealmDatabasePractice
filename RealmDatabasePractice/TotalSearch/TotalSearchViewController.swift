@@ -1,50 +1,44 @@
 //
-//  ViewController.swift
+//  TotalSearchViewController.swift
 //  RealmDatabasePractice
 //
-//  Created by 조규연 on 7/2/24.
+//  Created by 조규연 on 7/8/24.
 //
 
 import UIKit
-import Toast
+import SnapKit
 
-// DTO
-final class ListViewController: UIViewController {
-    var folder: Folder?
+final class TotalSearchViewController: BaseViewController {
     private let repository = TodoRepository()
-    private let listView = ListView()
-    private var category: CategoryList
+    private let searchController = UISearchController(searchResultsController: nil)
+    private lazy var tableView = {
+        let view = UITableView()
+        view.delegate = self
+        view.dataSource = self
+        view.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
+        self.view.addSubview(view)
+        return view
+    }()
     private var list: [Todo] = [] {
         didSet {
-            listView.tableView.reloadData()
+            tableView.reloadData()
         }
     }
-    private let searchController = UISearchController(searchResultsController: nil)
     
-    init(category: CategoryList) {
-        self.category = category
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func loadView() {
-        listView.tableView.delegate = self
-        listView.tableView.dataSource = self
-        view = listView
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let folder else { return }
-        list = repository.fetchFilterAsArray(folder: folder, category: category)
-        setNavi()
         setSearchController()
+        list = repository.fetchAllAsArray()
+    }
+    
+    override func configureLayout() {
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }
 
-private extension ListViewController {
+private extension TotalSearchViewController {
     func setSearchController() {
         searchController.searchBar.placeholder = "제목 및 내용을 검색할 수 있습니다."
         searchController.hidesNavigationBarDuringPresentation = false
@@ -52,37 +46,17 @@ private extension ListViewController {
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
     }
-    
-    func setNavi() {
-        title = category.categoryTitle
-        let sortButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
-        sortButton.menu = {
-            let deadlineSort = UIAction(title: "마감일 순으로 보기") { [weak self] _ in
-                guard let self, let folder else { return }
-                list = repository.fetchSortAsArray(folder: folder, category: category, keyPath: "date")
-            }
-            let titleSort = UIAction(title: "제목 순으로 보기") { [weak self] _ in
-                guard let self, let folder else { return }
-                list = repository.fetchSortAsArray(folder: folder, category: category, keyPath: "title")
-            }
-            let menu = UIMenu(children: [deadlineSort, titleSort])
-            
-            return menu
-        }()
-        navigationItem.rightBarButtonItem = sortButton
-    }
 }
 
-extension ListViewController: UISearchResultsUpdating {
+extension TotalSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let folder else { return }
-        list = repository.searchItemAsArray(folder: folder, category: category, searchController.searchBar.text!)
+        list = repository.searchItemAsArray(searchController.searchBar.text!)
     }
 }
 
-extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+extension TotalSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,4 +98,5 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         vc.todo = todo
         navigationController?.pushViewController(vc, animated: true)
     }
+    
 }

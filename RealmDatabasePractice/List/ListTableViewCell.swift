@@ -44,8 +44,16 @@ final class ListTableViewCell: BaseTableViewCell {
         return view
     }()
     
+    private lazy var folderLabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 14)
+        view.textColor = .secondaryLabel
+        addSubview(view)
+        return view
+    }()
+    
     private lazy var horiziontalStackView = {
-        let view = UIStackView(arrangedSubviews: [self.completeButton, self.labelStackView])
+        let view = UIStackView(arrangedSubviews: [completeButton, labelStackView])
         view.axis = .horizontal
         view.spacing = 8
         view.alignment = .leading
@@ -54,7 +62,7 @@ final class ListTableViewCell: BaseTableViewCell {
     }()
     
     private lazy var labelStackView = {
-        let view = UIStackView(arrangedSubviews: [self.titleLabel, self.contentLabel, horizontalLabelStackView])
+        let view = UIStackView(arrangedSubviews: [titleLabel, contentLabel, horizontalLabelStackView])
         view.axis = .vertical
         view.spacing = 2
         view.alignment = .leading
@@ -62,7 +70,7 @@ final class ListTableViewCell: BaseTableViewCell {
     }()
     
     private lazy var horizontalLabelStackView = {
-        let view = UIStackView(arrangedSubviews: [self.dateLabel, self.tagLabel])
+        let view = UIStackView(arrangedSubviews: [dateLabel, self.tagLabel])
         view.axis = .horizontal
         view.alignment = .leading
         return view
@@ -71,6 +79,11 @@ final class ListTableViewCell: BaseTableViewCell {
     override func configureLayout() {
         horiziontalStackView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(20)
+        }
+        
+        folderLabel.snp.makeConstraints {
+            $0.centerY.equalTo(horiziontalStackView)
+            $0.trailing.equalToSuperview().offset(-20)
         }
     }
     
@@ -91,6 +104,7 @@ final class ListTableViewCell: BaseTableViewCell {
             image = UIImage(systemName: "circle")
         }
         completeButton.setImage(image, for: .normal)
+        folderLabel.text = data.main.first?.name
     }
 }
 

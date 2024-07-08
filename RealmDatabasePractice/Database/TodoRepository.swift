@@ -134,6 +134,15 @@ final class TodoRepository {
         return result
     }
     
+    func searchItemAsArray(_ text: String) -> [Todo] {
+        let results = realm.objects(Todo.self)
+        let filter = realm.objects(Todo.self).where {
+            $0.title.contains(text, options: .caseInsensitive) || $0.content.contains(text, options: .caseInsensitive)
+        }
+        let result = text.isEmpty ? results : filter
+        return Array(result)
+    }
+    
     func searchItemAsArray(folder: Folder, category: CategoryList, _ text: String) -> [Todo] {
         let results = fetchFilter(folder: folder, category: category)
         let filter = results.where {
