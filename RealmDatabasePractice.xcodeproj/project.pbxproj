@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D10DA99B2C3BE10F001F25FF /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA99A2C3BE10F001F25FF /* FolderView.swift */; };
+		D10DA99D2C3BE126001F25FF /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA99C2C3BE126001F25FF /* FolderViewController.swift */; };
+		D10DA99F2C3BE367001F25FF /* FolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA99E2C3BE367001F25FF /* FolderRepository.swift */; };
 		D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */; };
 		D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */; };
 		D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */; };
@@ -51,6 +54,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D10DA99A2C3BE10F001F25FF /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
+		D10DA99C2C3BE126001F25FF /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
+		D10DA99E2C3BE367001F25FF /* FolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRepository.swift; sourceTree = "<group>"; };
 		D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D10DA9992C3BE104001F25FF /* Folder */ = {
+			isa = PBXGroup;
+			children = (
+				D10DA99A2C3BE10F001F25FF /* FolderView.swift */,
+				D10DA99C2C3BE126001F25FF /* FolderViewController.swift */,
+			);
+			path = Folder;
+			sourceTree = "<group>";
+		};
 		D18A4F422C3528910001D7E8 /* Tag */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +183,7 @@
 		D1E587F82C33E28200F3E452 /* RealmDatabasePractice */ = {
 			isa = PBXGroup;
 			children = (
+				D10DA9992C3BE104001F25FF /* Folder */,
 				D18A4F612C36A35E0001D7E8 /* Calendar */,
 				D18A4F512C3548010001D7E8 /* Detail */,
 				D18A4F4C2C3535EB0001D7E8 /* DatePicker */,
@@ -228,6 +244,7 @@
 			children = (
 				D1E588272C33E91000F3E452 /* RealmModel.swift */,
 				D18A4F5B2C3671130001D7E8 /* TodoRepository.swift */,
+				D10DA99E2C3BE367001F25FF /* FolderRepository.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -371,15 +388,18 @@
 				D18A4F462C352CFC0001D7E8 /* TagDelegate.swift in Sources */,
 				D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */,
 				D18A4F532C35480B0001D7E8 /* DetailView.swift in Sources */,
+				D10DA99F2C3BE367001F25FF /* FolderRepository.swift in Sources */,
 				D1E588122C33E48500F3E452 /* ListView.swift in Sources */,
 				D1E5882D2C33ED7B00F3E452 /* RegisterView.swift in Sources */,
 				D1E588282C33E91000F3E452 /* RealmModel.swift in Sources */,
 				D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */,
 				D18A4F632C36A3660001D7E8 /* CalendarView.swift in Sources */,
 				D18A4F3D2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift in Sources */,
+				D10DA99D2C3BE126001F25FF /* FolderViewController.swift in Sources */,
 				D18A4F552C3548300001D7E8 /* DetailViewController.swift in Sources */,
 				D1E588322C33FC9400F3E452 /* Extension+UIViewController.swift in Sources */,
 				D1E588142C33E4EA00F3E452 /* BaseTableViewCell.swift in Sources */,
+				D10DA99B2C3BE10F001F25FF /* FolderView.swift in Sources */,
 				D1E5883E2C34C79100F3E452 /* CategoryListView.swift in Sources */,
 				D18A4F412C3516E20001D7E8 /* CategoryList.swift in Sources */,
 				D18A4F502C3539C00001D7E8 /* Priority.swift in Sources */,

@@ -11,11 +11,13 @@ import Toast
 
 final class RegisterViewController: UIViewController {
     private let registerView = RegisterView()
-    private let repository = TodoRepository()
+    private let repository = FolderRepository()
     private var date: Date?
     private var tag: String?
     private var priority: String?
     private var image: UIImage?
+    
+    var folder: Folder?
     
     override func loadView() {
         registerView.tableView.delegate = self
@@ -55,7 +57,9 @@ private extension RegisterViewController {
             return
         }
         let data = Todo(title: title, content: registerView.contentTextField.text, date: date, tag: tag, priority: priority)
-        repository.createItem(data: data)
+//        repository.createItem(data: data)
+        guard let folder else { return }
+        repository.createFolder(data, folder: folder)
         if let image {
             saveImageToDocument(image: image, filename: "\(data.id)")
         }

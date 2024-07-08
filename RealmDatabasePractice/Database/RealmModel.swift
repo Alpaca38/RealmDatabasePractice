@@ -8,6 +8,14 @@
 import Foundation
 import RealmSwift
 
+final class Folder: Object {
+    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var name: String
+    @Persisted var regDate: Date
+    
+    @Persisted var detail: List<Todo>
+}
+
 final class Todo: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String

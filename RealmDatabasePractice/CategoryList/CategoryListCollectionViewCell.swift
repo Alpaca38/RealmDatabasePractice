@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 final class CategoryListCollectionViewCell: BaseCollectionViewCell {
+    var folder: Folder?
+    
     private lazy var customView = {
         let view = UIView()
         view.addSubview(self.imageView)
@@ -58,8 +60,14 @@ final class CategoryListCollectionViewCell: BaseCollectionViewCell {
     
     func configure(category: CategoryList) {
         imageView.image = category.categoryImage?.withTintColor(category.tintColor, renderingMode: .alwaysOriginal).withAlignmentRectInsets(UIEdgeInsets(top: -5, left: -5, bottom: -5, right: -5))
-        countLabel.text = String(category.count)
+        guard let folder else { return }
+        countLabel.text = "\(category.count(in: folder))"
         titleLabel.text = category.categoryTitle
+    }
+    
+    func configure(_ folder: Folder) {
+        titleLabel.text = folder.name
+        countLabel.text = "\(folder.detail.count)"
     }
     
 }

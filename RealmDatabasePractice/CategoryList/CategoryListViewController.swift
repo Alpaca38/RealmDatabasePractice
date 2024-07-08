@@ -11,6 +11,8 @@ final class CategoryListViewController: UIViewController {
     private let categoryListView = CategoryListView()
     private let repository = TodoRepository()
     
+    var folder: Folder?
+    
     override func loadView() {
         categoryListView.delegate = self
         categoryListView.collectionView.delegate = self
@@ -28,7 +30,7 @@ final class CategoryListViewController: UIViewController {
 private extension CategoryListViewController {
     func setNavi() {
         let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonTapped))
-        navigationItem.leftBarButtonItem = calendarButton
+        navigationItem.rightBarButtonItem = calendarButton
     }
     
     @objc func calendarButtonTapped() {
@@ -61,6 +63,7 @@ extension CategoryListViewController: UICollectionViewDelegate, UICollectionView
         guard let data = CategoryList(rawValue: indexPath.row) else { 
             return cell
         }
+        cell.folder = folder
         cell.configure(category: data)
         return cell
     }
@@ -90,6 +93,7 @@ extension CategoryListViewController: UICollectionViewDelegate, UICollectionView
 extension CategoryListViewController: CategoryListDelegate {
     func didCreateTodoButtonTapped() {
         let vc = RegisterViewController()
+        vc.folder = folder
         let navi = UINavigationController(rootViewController: vc)
         present(navi, animated: true)
     }

@@ -60,34 +60,22 @@ enum CategoryList: Int, CaseIterable {
         }
     }
     
-    var count: Int {
-        let realm = try! Realm()
-        switch self {
-        case .today:
+    func count(in folder: Folder) -> Int {
             let calendar = Calendar.current
-            let startOfDay = calendar.startOfDay(for: Date())
-            let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
-            let todayToDos = realm.objects(Todo.self).where {
-                $0.date >= startOfDay && $0.date < endOfDay
+            switch self {
+            case .today:
+                let startOfDay = calendar.startOfDay(for: Date())
+                let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+                return folder.detail.where { $0.date >= startOfDay && $0.date < endOfDay }.count
+            case .todo:
+                let today = calendar.startOfDay(for: Date())
+                return folder.detail.where { $0.date >= today }.count
+            case .total:
+                return folder.detail.count
+            case .flag:
+                return folder.detail.where { $0.isFlagged == true }.count
+            case .complete:
+                return folder.detail.where { $0.isComplete == true }.count
             }
-            return todayToDos.count
-        case .todo:
-            let calendar = Calendar.current
-            let today = calendar.startOfDay(for: Date())
-            let toDos = realm.objects(Todo.self).where {
-                $0.date >= today
-            }
-            return toDos.count
-        case .total:
-            return realm.objects(Todo.self).count
-        case .flag:
-            return realm.objects(Todo.self).where {
-                $0.isFlagged == true
-            }.count
-        case .complete:
-            return realm.objects(Todo.self).where {
-                $0.isComplete == true
-            }.count
         }
-    }
 }
