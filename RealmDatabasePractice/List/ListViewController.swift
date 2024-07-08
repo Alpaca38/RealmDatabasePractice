@@ -10,6 +10,7 @@ import Toast
 
 // DTO
 final class ListViewController: UIViewController {
+    var folder: Folder?
     private let repository = TodoRepository()
     private let listView = ListView()
     private var category: CategoryList
@@ -36,7 +37,8 @@ final class ListViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        list = repository.fetchFilterAsArray(category: category)
+        guard let folder else { return }
+        list = repository.fetchFilterAsArray(folder: folder, category: category)
         setNavi()
         setSearchController()
     }
@@ -57,12 +59,12 @@ private extension ListViewController {
         let sortButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
         sortButton.menu = {
             let deadlineSort = UIAction(title: "마감일 순으로 보기") { [weak self] _ in
-                guard let self else { return }
-                list = repository.fetchSortAsArray(category: category, keyPath: "date")
+                guard let self, let folder else { return }
+                list = repository.fetchSortAsArray(folder: folder, category: category, keyPath: "date")
             }
             let titleSort = UIAction(title: "제목 순으로 보기") { [weak self] _ in
-                guard let self else { return }
-                list = repository.fetchSortAsArray(category: category, keyPath: "title")
+                guard let self, let folder else { return }
+                list = repository.fetchSortAsArray(folder: folder, category: category, keyPath: "title")
             }
             let menu = UIMenu(children: [deadlineSort, titleSort])
             
@@ -74,13 +76,15 @@ private extension ListViewController {
 
 extension ListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        list = repository.searchItemAsArray(category: category, searchController.searchBar.text!)
+        guard let folder else { return }
+        list = repository.searchItemAsArray(folder: folder, category: category, searchController.searchBar.text!)
     }
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        list.count
+        print(list)
+        return list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

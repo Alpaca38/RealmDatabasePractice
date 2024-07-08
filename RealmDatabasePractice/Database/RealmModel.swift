@@ -26,6 +26,9 @@ final class Todo: Object {
     @Persisted var isFlagged: Bool
     @Persisted var isComplete: Bool
     
+    @Persisted(originProperty: "detail")
+    var main: LinkingObjects<Folder>
+    
     var dateString: String {
         guard let date else {
             return "없음"

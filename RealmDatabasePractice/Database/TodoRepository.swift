@@ -58,8 +58,8 @@ final class TodoRepository {
         return realm.objects(Todo.self)
     }
     
-    func fetchSort(category: CategoryList, keyPath: String) -> Results<Todo> {
-        let results = fetchFilter(category: category)
+    func fetchSort(folder: Folder, category: CategoryList, keyPath: String) -> Results<Todo> {
+        let results = fetchFilter(folder: folder, category: category)
         return results.sorted(byKeyPath: keyPath, ascending: true)
     }
     
@@ -72,29 +72,31 @@ final class TodoRepository {
         }
     }
     
-    func fetchFilter(category: CategoryList) -> Results<Todo> {
+    func fetchFilter(folder: Folder, category: CategoryList) -> Results<Todo> {
         switch category {
         case .today:
             let calendar = Calendar.current
             let startOfDay = calendar.startOfDay(for: Date())
             let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
-            return realm.objects(Todo.self).where {
+            return folder.detail.where {
                 $0.date >= startOfDay && $0.date < endOfDay
             }
         case .todo:
             let calendar = Calendar.current
             let today = calendar.startOfDay(for: Date())
-            return realm.objects(Todo.self).where {
+            return folder.detail.where {
                 $0.date >= today
             }
         case .total:
-            return realm.objects(Todo.self)
-        case .flag:
             return realm.objects(Todo.self).where {
+                $0.main.id == folder.id
+            }
+        case .flag:
+            return folder.detail.where {
                 $0.isFlagged == true
             }
         case .complete:
-            return realm.objects(Todo.self).where {
+            return folder.detail.where {
                 $0.isComplete == true
             }
         }
@@ -104,12 +106,12 @@ final class TodoRepository {
         return Array(realm.objects(Todo.self))
     }
     
-    func fetchFilterAsArray(category: CategoryList) -> [Todo] {
-        return Array(fetchFilter(category: category))
+    func fetchFilterAsArray(folder: Folder, category: CategoryList) -> [Todo] {
+        return Array(fetchFilter(folder: folder, category: category))
     }
     
-    func fetchSortAsArray(category: CategoryList, keyPath: String) -> [Todo] {
-        let results = fetchFilter(category: category)
+    func fetchSortAsArray(folder: Folder, category: CategoryList, keyPath: String) -> [Todo] {
+        let results = fetchFilter(folder: folder, category: category)
         return Array(results.sorted(byKeyPath: keyPath, ascending: true))
     }
     
@@ -123,8 +125,8 @@ final class TodoRepository {
         }
     }
     
-    func searchItem(category: CategoryList, _ text: String) -> Results<Todo> {
-        let results = fetchFilter(category: category)
+    func searchItem(folder: Folder, category: CategoryList, _ text: String) -> Results<Todo> {
+        let results = fetchFilter(folder: folder, category: category)
         let filter = results.where {
             $0.title.contains(text, options: .caseInsensitive) || $0.content.contains(text, options: .caseInsensitive)
         }
@@ -132,8 +134,8 @@ final class TodoRepository {
         return result
     }
     
-    func searchItemAsArray(category: CategoryList, _ text: String) -> [Todo] {
-        let results = fetchFilter(category: category)
+    func searchItemAsArray(folder: Folder, category: CategoryList, _ text: String) -> [Todo] {
+        let results = fetchFilter(folder: folder, category: category)
         let filter = results.where {
             $0.title.contains(text, options: .caseInsensitive) || $0.content.contains(text, options: .caseInsensitive)
         }
@@ -141,8 +143,8 @@ final class TodoRepository {
         return Array(result)
     }
     
-    func setNotificationToken(category: CategoryList , completion: @escaping (RealmCollectionChange<Any>) -> Void) {
-        notificationToken = fetchFilter(category: category).observe { (changes: RealmCollectionChange) in
+    func setNotificationToken(folder: Folder, category: CategoryList , completion: @escaping (RealmCollectionChange<Any>) -> Void) {
+        notificationToken = fetchFilter(folder: folder, category: category).observe { (changes: RealmCollectionChange) in
             switch changes {
             case .initial(_):
                 completion(.initial(Any.self))
