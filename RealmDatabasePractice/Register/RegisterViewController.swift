@@ -121,7 +121,7 @@ extension RegisterViewController: TagDelegate {
 }
 
 extension RegisterViewController: DatePickerDelegate {
-    func didSaveButtonTapped(date: Date) {
+    func didSaveButtonTapped(date: Date?) {
         self.date = date
         registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.deadline.rawValue, section: 0)], with: .automatic)
     }

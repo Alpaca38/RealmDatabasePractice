@@ -19,12 +19,21 @@ final class DateViewController: BaseViewController {
         return view
     }()
     
-    private var date = Date()
+    private lazy var dateLabel = {
+        let view = UILabel()
+        view.textAlignment = .center
+        view.font = .boldSystemFont(ofSize: 18)
+        self.view.addSubview(view)
+        return view
+    }()
+    
     weak var delegate: DatePickerDelegate?
+    private let viewModel = DateViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavi()
+        bindData()
     }
     
     override func configureLayout() {
@@ -32,6 +41,10 @@ final class DateViewController: BaseViewController {
             $0.center.equalToSuperview()
             let width = UIScreen.main.bounds.width - 40
             $0.size.equalTo(width)
+        }
+        
+        dateLabel.snp.makeConstraints {
+            $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
     
@@ -41,11 +54,18 @@ final class DateViewController: BaseViewController {
     }
     
     @objc private func dateChanged(_ sender: UIDatePicker) {
-        date = sender.date
+        viewModel.inputDate.value = sender.date
     }
     
     @objc private func saveButtonTapped() {
-        delegate?.didSaveButtonTapped(date: date)
+        delegate?.didSaveButtonTapped(date: viewModel.inputDate.value)
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func bindData() {
+        viewModel.outputDateText.bind { [weak self] in
+            guard let self else { return }
+            dateLabel.text = $0
+        }
     }
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DatePickerDelegate: AnyObject {
-    func didSaveButtonTapped(date: Date)
+    func didSaveButtonTapped(date: Date?)
 }

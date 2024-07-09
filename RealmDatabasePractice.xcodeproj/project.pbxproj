@@ -12,6 +12,8 @@
 		D10DA99F2C3BE367001F25FF /* FolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA99E2C3BE367001F25FF /* FolderRepository.swift */; };
 		D10DA9A22C3BF2C3001F25FF /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9A12C3BF2C3001F25FF /* TabbarController.swift */; };
 		D10DA9A52C3BF342001F25FF /* TotalSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9A42C3BF342001F25FF /* TotalSearchViewController.swift */; };
+		D10DA9B72C3D2B24001F25FF /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9B62C3D2B24001F25FF /* Observable.swift */; };
+		D10DA9B92C3D2B96001F25FF /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9B82C3D2B96001F25FF /* DateViewModel.swift */; };
 		D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */; };
 		D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */; };
 		D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */; };
@@ -61,6 +63,8 @@
 		D10DA99E2C3BE367001F25FF /* FolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRepository.swift; sourceTree = "<group>"; };
 		D10DA9A12C3BF2C3001F25FF /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		D10DA9A42C3BF342001F25FF /* TotalSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSearchViewController.swift; sourceTree = "<group>"; };
+		D10DA9B62C3D2B24001F25FF /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		D10DA9B82C3D2B96001F25FF /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				D10DA9A12C3BF2C3001F25FF /* TabbarController.swift */,
+				D10DA9B62C3D2B24001F25FF /* Observable.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				D1E588352C34075900F3E452 /* DateViewController.swift */,
+				D10DA9B82C3D2B96001F25FF /* DateViewModel.swift */,
 			);
 			path = DatePicker;
 			sourceTree = "<group>";
@@ -404,12 +410,14 @@
 				D18A4F5C2C3671130001D7E8 /* TodoRepository.swift in Sources */,
 				D18A4F4B2C3535A30001D7E8 /* BaseViewController.swift in Sources */,
 				D18A4F4E2C3538FD0001D7E8 /* PriorityDelegate.swift in Sources */,
+				D10DA9B72C3D2B24001F25FF /* Observable.swift in Sources */,
 				D1E588362C34075900F3E452 /* DateViewController.swift in Sources */,
 				D18A4F3F2C34E0540001D7E8 /* BaseCollectionViewCell.swift in Sources */,
 				D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */,
 				D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */,
 				D18A4F462C352CFC0001D7E8 /* TagDelegate.swift in Sources */,
 				D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */,
+				D10DA9B92C3D2B96001F25FF /* DateViewModel.swift in Sources */,
 				D10DA9A22C3BF2C3001F25FF /* TabbarController.swift in Sources */,
 				D18A4F532C35480B0001D7E8 /* DetailView.swift in Sources */,
 				D10DA99F2C3BE367001F25FF /* FolderRepository.swift in Sources */,
