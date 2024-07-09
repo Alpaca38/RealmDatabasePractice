@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PriorityDelegate: AnyObject {
-    func sendPriority(_ priority: String)
+    func sendPriority(_ priority: String?)
 }

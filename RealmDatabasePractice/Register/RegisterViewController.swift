@@ -107,7 +107,7 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension RegisterViewController: PriorityDelegate {
-    func sendPriority(_ priority: String) {
+    func sendPriority(_ priority: String?) {
         self.priority = priority
         registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.priority.rawValue, section: 0)], with: .automatic)
     }

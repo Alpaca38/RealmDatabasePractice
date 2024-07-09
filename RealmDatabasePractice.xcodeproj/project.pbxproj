@@ -14,6 +14,7 @@
 		D10DA9A52C3BF342001F25FF /* TotalSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9A42C3BF342001F25FF /* TotalSearchViewController.swift */; };
 		D10DA9B72C3D2B24001F25FF /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9B62C3D2B24001F25FF /* Observable.swift */; };
 		D10DA9B92C3D2B96001F25FF /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9B82C3D2B96001F25FF /* DateViewModel.swift */; };
+		D10DA9BB2C3D2FE8001F25FF /* PriorityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9BA2C3D2FE8001F25FF /* PriorityViewModel.swift */; };
 		D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */; };
 		D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */; };
 		D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */; };
@@ -65,6 +66,7 @@
 		D10DA9A42C3BF342001F25FF /* TotalSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSearchViewController.swift; sourceTree = "<group>"; };
 		D10DA9B62C3D2B24001F25FF /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		D10DA9B82C3D2B96001F25FF /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
+		D10DA9BA2C3D2FE8001F25FF /* PriorityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewModel.swift; sourceTree = "<group>"; };
 		D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				D18A4F482C35356B0001D7E8 /* PriorityViewController.swift */,
+				D10DA9BA2C3D2FE8001F25FF /* PriorityViewModel.swift */,
 			);
 			path = Priority;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				D1E5880F2C33E41500F3E452 /* BaseView.swift in Sources */,
 				D1E5882F2C33F08200F3E452 /* RegisterTableViewCell.swift in Sources */,
 				D18A4F442C35289B0001D7E8 /* TagViewController.swift in Sources */,
+				D10DA9BB2C3D2FE8001F25FF /* PriorityViewModel.swift in Sources */,
 				D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */,
 				D18A4F492C35356B0001D7E8 /* PriorityViewController.swift in Sources */,
 				D1E588222C33E5CD00F3E452 /* ReuseIdentifier.swift in Sources */,
