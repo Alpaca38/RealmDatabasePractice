@@ -32,6 +32,7 @@ final class DateViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.inputDate.value = datePicker.date
         setNavi()
         bindData()
     }

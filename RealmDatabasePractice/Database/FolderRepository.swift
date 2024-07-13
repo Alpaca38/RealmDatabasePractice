@@ -10,6 +10,7 @@ import RealmSwift
 
 final class FolderRepository {
     private let realm = try! Realm()
+    private var notificationToken: NotificationToken?
     
     func createFolder(_ data: Todo, folder: Folder) {
         do {
@@ -28,5 +29,23 @@ final class FolderRepository {
     
     func printRealmURL() {
         print(realm.configuration.fileURL!)
+    }
+    
+    func observeFolders(completion: @escaping (RealmCollectionChange<Results<Folder>>) -> Void) {
+        let results = realm.objects(Folder.self)
+        notificationToken = results.observe { changes in
+            switch changes {
+            case .initial:
+                completion(.initial(results))
+            case .update(_, _, _, _):
+                completion(.update(results, deletions: [], insertions: [], modifications: []))
+            case .error(let error):
+                completion(.error(error))
+            }
+        }
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
     }
 }

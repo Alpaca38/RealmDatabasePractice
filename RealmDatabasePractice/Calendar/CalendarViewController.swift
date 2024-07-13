@@ -13,11 +13,9 @@ import SnapKit
 final class CalendarViewController: UIViewController {
     private let repository = TodoRepository()
     private let calendarView = CalendarView()
-    private var list: Results<Todo>! {
-        didSet {
-            calendarView.tableView.reloadData()
-        }
-    }
+    private let viewModel = CalendarViewModel()
+    
+    var folder: Folder?
     
     override func loadView() {
         calendarView.calendar.delegate = self
@@ -29,17 +27,28 @@ final class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        list = repository.fetchAll()
+        viewModel.inputViewDidLoadTrigger.value = folder
+        bindData()
+    }
+}
+
+private extension CalendarViewController {
+    func bindData() {
+        viewModel.outputCalendarTodoList.bind { [weak self] _ in
+            self?.calendarView.tableView.reloadData()
+        }
     }
 }
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        return repository.fetchDate(date: date).count
+        guard let folder else { return 0 }
+        return repository.fetchDate(folder: folder, date: date).count
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        list = repository.fetchDate(date: date)
+        guard let folder else { return }
+        viewModel.outputCalendarTodoList.value = repository.fetchDate(folder: folder, date: date)
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
@@ -52,12 +61,12 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
 
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return viewModel.outputCalendarTodoList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as! ListTableViewCell
-        let data = list[indexPath.row]
+        let data = viewModel.outputCalendarTodoList.value[indexPath.row]
         cell.data = data
         cell.configure(data: data)
         return cell

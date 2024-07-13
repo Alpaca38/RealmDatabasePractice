@@ -15,6 +15,11 @@
 		D10DA9B72C3D2B24001F25FF /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9B62C3D2B24001F25FF /* Observable.swift */; };
 		D10DA9B92C3D2B96001F25FF /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9B82C3D2B96001F25FF /* DateViewModel.swift */; };
 		D10DA9BB2C3D2FE8001F25FF /* PriorityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9BA2C3D2FE8001F25FF /* PriorityViewModel.swift */; };
+		D10DAA672C42949A001F25FF /* FolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA662C42949A001F25FF /* FolderViewModel.swift */; };
+		D10DAA692C42A33F001F25FF /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA682C42A33F001F25FF /* RegisterViewModel.swift */; };
+		D10DAA6B2C42AF44001F25FF /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA6A2C42AF44001F25FF /* CalendarViewModel.swift */; };
+		D10DAA6D2C42B486001F25FF /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA6C2C42B486001F25FF /* ListViewModel.swift */; };
+		D10DAA6F2C42B697001F25FF /* TotalSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA6E2C42B697001F25FF /* TotalSearchViewModel.swift */; };
 		D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */; };
 		D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */; };
 		D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */; };
@@ -67,6 +72,11 @@
 		D10DA9B62C3D2B24001F25FF /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		D10DA9B82C3D2B96001F25FF /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		D10DA9BA2C3D2FE8001F25FF /* PriorityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewModel.swift; sourceTree = "<group>"; };
+		D10DAA662C42949A001F25FF /* FolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewModel.swift; sourceTree = "<group>"; };
+		D10DAA682C42A33F001F25FF /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		D10DAA6A2C42AF44001F25FF /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		D10DAA6C2C42B486001F25FF /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		D10DAA6E2C42B697001F25FF /* TotalSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSearchViewModel.swift; sourceTree = "<group>"; };
 		D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +138,7 @@
 			children = (
 				D10DA99A2C3BE10F001F25FF /* FolderView.swift */,
 				D10DA99C2C3BE126001F25FF /* FolderViewController.swift */,
+				D10DAA662C42949A001F25FF /* FolderViewModel.swift */,
 			);
 			path = Folder;
 			sourceTree = "<group>";
@@ -145,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				D10DA9A42C3BF342001F25FF /* TotalSearchViewController.swift */,
+				D10DAA6E2C42B697001F25FF /* TotalSearchViewModel.swift */,
 			);
 			path = TotalSearch;
 			sourceTree = "<group>";
@@ -189,6 +201,7 @@
 			children = (
 				D18A4F622C36A3660001D7E8 /* CalendarView.swift */,
 				D18A4F642C36A3740001D7E8 /* CalendarViewController.swift */,
+				D10DAA6A2C42AF44001F25FF /* CalendarViewModel.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -254,6 +267,7 @@
 				D1E587FD2C33E28200F3E452 /* ListViewController.swift */,
 				D1E588112C33E48500F3E452 /* ListView.swift */,
 				D1E5881E2C33E5B400F3E452 /* ListTableViewCell.swift */,
+				D10DAA6C2C42B486001F25FF /* ListViewModel.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -286,6 +300,7 @@
 				D1E5882A2C33ECEC00F3E452 /* RegisterViewController.swift */,
 				D1E5882C2C33ED7B00F3E452 /* RegisterView.swift */,
 				D1E5882E2C33F08200F3E452 /* RegisterTableViewCell.swift */,
+				D10DAA682C42A33F001F25FF /* RegisterViewModel.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -418,6 +433,7 @@
 				D18A4F3F2C34E0540001D7E8 /* BaseCollectionViewCell.swift in Sources */,
 				D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */,
 				D1E587FE2C33E28200F3E452 /* ListViewController.swift in Sources */,
+				D10DAA692C42A33F001F25FF /* RegisterViewModel.swift in Sources */,
 				D18A4F462C352CFC0001D7E8 /* TagDelegate.swift in Sources */,
 				D1E587FA2C33E28200F3E452 /* AppDelegate.swift in Sources */,
 				D10DA9B92C3D2B96001F25FF /* DateViewModel.swift in Sources */,
@@ -428,7 +444,9 @@
 				D1E5882D2C33ED7B00F3E452 /* RegisterView.swift in Sources */,
 				D1E588282C33E91000F3E452 /* RealmModel.swift in Sources */,
 				D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */,
+				D10DAA6F2C42B697001F25FF /* TotalSearchViewModel.swift in Sources */,
 				D18A4F632C36A3660001D7E8 /* CalendarView.swift in Sources */,
+				D10DAA6B2C42AF44001F25FF /* CalendarViewModel.swift in Sources */,
 				D18A4F3D2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift in Sources */,
 				D10DA99D2C3BE126001F25FF /* FolderViewController.swift in Sources */,
 				D18A4F552C3548300001D7E8 /* DetailViewController.swift in Sources */,
@@ -438,6 +456,8 @@
 				D1E5883E2C34C79100F3E452 /* CategoryListView.swift in Sources */,
 				D18A4F412C3516E20001D7E8 /* CategoryList.swift in Sources */,
 				D18A4F502C3539C00001D7E8 /* Priority.swift in Sources */,
+				D10DAA6D2C42B486001F25FF /* ListViewModel.swift in Sources */,
+				D10DAA672C42949A001F25FF /* FolderViewModel.swift in Sources */,
 				D1E5880F2C33E41500F3E452 /* BaseView.swift in Sources */,
 				D1E5882F2C33F08200F3E452 /* RegisterTableViewCell.swift in Sources */,
 				D18A4F442C35289B0001D7E8 /* TagViewController.swift in Sources */,

@@ -10,6 +10,7 @@ import SnapKit
 
 final class TotalSearchViewController: BaseViewController {
     private let repository = TodoRepository()
+    private let viewModel = TotalSearchViewModel()
     private let searchController = UISearchController(searchResultsController: nil)
     private lazy var tableView = {
         let view = UITableView()
@@ -19,16 +20,11 @@ final class TotalSearchViewController: BaseViewController {
         self.view.addSubview(view)
         return view
     }()
-    private var list: [Todo] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setSearchController()
-        list = repository.fetchAllAsArray()
+        bindData()
     }
     
     override func configureLayout() {
@@ -39,6 +35,12 @@ final class TotalSearchViewController: BaseViewController {
 }
 
 private extension TotalSearchViewController {
+    func bindData() {
+        viewModel.outputList.bind { [weak self] _ in
+            self?.tableView.reloadData()
+        }
+    }
+    
     func setSearchController() {
         searchController.searchBar.placeholder = "제목 및 내용을 검색할 수 있습니다."
         searchController.hidesNavigationBarDuringPresentation = false
@@ -50,18 +52,18 @@ private extension TotalSearchViewController {
 
 extension TotalSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        list = repository.searchItemAsArray(searchController.searchBar.text!)
+        viewModel.outputList.value = repository.searchItemAsArray(searchController.searchBar.text!)
     }
 }
 
 extension TotalSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        list.count
+        viewModel.outputList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as! ListTableViewCell
-        let data = list[indexPath.row]
+        let data = viewModel.outputList.value[indexPath.row]
         cell.data = data
         cell.configure(data: data)
         cell.didCompleteButtonTapped = {
@@ -71,12 +73,13 @@ extension TotalSearchViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let flag = UIContextualAction(style: .normal, title: "깃발") { action, view, completion in
-            let data = self.list[indexPath.row]
-            self.repository.updateFlagged(data: data) {
-                self.view.makeToast("깃발이 해제 되었습니다.")
+        let flag = UIContextualAction(style: .normal, title: "깃발") { [weak self] action, view, completion in
+            guard let self else { return }
+            let data = viewModel.outputList.value[indexPath.row]
+            repository.updateFlagged(data: data) {
+                view.makeToast("깃발이 해제 되었습니다.")
             } isFlagged: {
-                self.view.makeToast("깃발이 설정 되었습니다.")
+                view.makeToast("깃발이 설정 되었습니다.")
             }
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
@@ -84,16 +87,17 @@ extension TotalSearchViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
-            let data = self.list[indexPath.row]
-            self.repository.deleteItem(data: data)
-            self.list.remove(at: indexPath.row)
+        let delete = UIContextualAction(style: .destructive, title: "삭제") { [weak self] action, view, completion in
+            guard let self else { return }
+            let data = viewModel.outputList.value[indexPath.row]
+            repository.deleteItem(data: data)
+            viewModel.outputList.value.remove(at: indexPath.row)
         }
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let todo = list[indexPath.row]
+        let todo = viewModel.outputList.value[indexPath.row]
         let vc = DetailViewController()
         vc.todo = todo
         navigationController?.pushViewController(vc, animated: true)

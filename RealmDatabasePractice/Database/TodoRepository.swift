@@ -63,13 +63,13 @@ final class TodoRepository {
         return results.sorted(byKeyPath: keyPath, ascending: true)
     }
     
-    func fetchDate(date: Date) -> Results<Todo> {
+    func fetchDate(folder: Folder, date: Date) -> [Todo] {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: date)
         let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
-        return realm.objects(Todo.self).where {
+        return Array(fetchFilter(folder: folder, category: .total).where {
             $0.date >= startOfDay && $0.date < endOfDay
-        }
+        })
     }
     
     func fetchFilter(folder: Folder, category: CategoryList) -> Results<Todo> {

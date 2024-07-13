@@ -12,10 +12,11 @@ import Toast
 final class RegisterViewController: UIViewController {
     private let registerView = RegisterView()
     private let repository = FolderRepository()
-    private var date: Date?
-    private var tag: String?
-    private var priority: String?
-    private var image: UIImage?
+    private let viewModel = RegisterViewModel()
+//    private var date: Date?
+//    private var tag: String?
+//    private var priority: String?
+//    private var image: UIImage?
     
     var folder: Folder?
     
@@ -56,11 +57,14 @@ private extension RegisterViewController {
             self.view.makeToast("제목이 비어있습니다. 제목을 입력해주세요.", duration: 2, position: .center)
             return
         }
-        let data = Todo(title: title, content: registerView.contentTextField.text, date: date, tag: tag, priority: priority)
-//        repository.createItem(data: data)
-        guard let folder else { return }
+        viewModel.inputTitle.value = title
+        viewModel.inputContent.value = registerView.contentTextField.text
+        
+        let data = viewModel.outputTodo.value
+        guard let folder, let data else { return }
         repository.createFolder(data, folder: folder)
-        if let image {
+        
+        if let image = viewModel.outputImage.value as? UIImage {
             saveImageToDocument(image: image, filename: "\(data.id)")
         }
         dismiss(animated: true)
@@ -77,7 +81,9 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
         guard let option = RegisterOptions(rawValue: indexPath.row) else {
             return cell
         }
-        cell.configure(option: option, date: date, tag: tag, priority: priority, image: image)
+        let todo = viewModel.outputTodo.value
+        let image = viewModel.outputImage.value as? UIImage
+        cell.configure(option: option, date: todo?.date, tag: todo?.tag, priority: todo?.priority, image: image)
         return cell
     }
     
@@ -108,21 +114,21 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension RegisterViewController: PriorityDelegate {
     func sendPriority(_ priority: String?) {
-        self.priority = priority
+        viewModel.inputPriority.value = priority
         registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.priority.rawValue, section: 0)], with: .automatic)
     }
 }
 
 extension RegisterViewController: TagDelegate {
     func sendTag(_ text: String) {
-        self.tag = text
+        viewModel.inputTag.value = text
         registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.tag.rawValue, section: 0)], with: .automatic)
     }
 }
 
 extension RegisterViewController: DatePickerDelegate {
     func didSaveButtonTapped(date: Date?) {
-        self.date = date
+        viewModel.inputDate.value = date
         registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.deadline.rawValue, section: 0)], with: .automatic)
     }
 }
@@ -130,10 +136,10 @@ extension RegisterViewController: DatePickerDelegate {
 extension RegisterViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
                 DispatchQueue.main.async {
-                    self.image = image as? UIImage
-                    self.registerView.tableView.reloadData()
+                    self?.viewModel.inputImage.value = image
+                    self?.registerView.tableView.reloadRows(at: [IndexPath(row: RegisterOptions.image.rawValue, section: 0)], with: .automatic)
                 }
             }
         }

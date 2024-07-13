@@ -35,6 +35,7 @@ private extension CategoryListViewController {
     
     @objc func calendarButtonTapped() {
         let vc = CalendarViewController()
+        vc.folder = folder
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -70,28 +71,9 @@ extension CategoryListViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = CategoryList.allCases[indexPath.item]
-        switch selectedCategory {
-        case .today:
-            let vc = ListViewController(category: .today)
-            vc.folder = folder
-            navigationController?.pushViewController(vc, animated: true)
-        case .todo:
-            let vc = ListViewController(category: .todo)
-            vc.folder = folder
-            navigationController?.pushViewController(vc, animated: true)
-        case .total:
-            let vc = ListViewController(category: .total)
-            vc.folder = folder
-            navigationController?.pushViewController(vc, animated: true)
-        case .flag:
-            let vc = ListViewController(category: .flag)
-            vc.folder = folder
-            navigationController?.pushViewController(vc, animated: true)
-        case .complete:
-            let vc = ListViewController(category: .complete)
-            vc.folder = folder
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        let vc = ListViewController(category: selectedCategory)
+        vc.folder = folder
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

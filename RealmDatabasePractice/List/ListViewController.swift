@@ -12,13 +12,10 @@ import Toast
 final class ListViewController: UIViewController {
     var folder: Folder?
     private let repository = TodoRepository()
+    private let viewModel = ListViewModel()
     private let listView = ListView()
     private var category: CategoryList
-    private var list: [Todo] = [] {
-        didSet {
-            listView.tableView.reloadData()
-        }
-    }
+    
     private let searchController = UISearchController(searchResultsController: nil)
     
     init(category: CategoryList) {
@@ -37,14 +34,20 @@ final class ListViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let folder else { return }
-        list = repository.fetchFilterAsArray(folder: folder, category: category)
+        viewModel.inputViewDidLoadTrigger.value = (folder, category)
         setNavi()
         setSearchController()
+        bindData()
     }
 }
 
 private extension ListViewController {
+    func bindData() {
+        viewModel.outputList.bind { [weak self] _ in
+            self?.listView.tableView.reloadData()
+        }
+    }
+    
     func setSearchController() {
         searchController.searchBar.placeholder = "제목 및 내용을 검색할 수 있습니다."
         searchController.hidesNavigationBarDuringPresentation = false
@@ -59,11 +62,11 @@ private extension ListViewController {
         sortButton.menu = {
             let deadlineSort = UIAction(title: "마감일 순으로 보기") { [weak self] _ in
                 guard let self, let folder else { return }
-                list = repository.fetchSortAsArray(folder: folder, category: category, keyPath: "date")
+                viewModel.outputList.value = repository.fetchSortAsArray(folder: folder, category: category, keyPath: "date")
             }
             let titleSort = UIAction(title: "제목 순으로 보기") { [weak self] _ in
                 guard let self, let folder else { return }
-                list = repository.fetchSortAsArray(folder: folder, category: category, keyPath: "title")
+                viewModel.outputList.value = repository.fetchSortAsArray(folder: folder, category: category, keyPath: "title")
             }
             let menu = UIMenu(children: [deadlineSort, titleSort])
             
@@ -76,18 +79,18 @@ private extension ListViewController {
 extension ListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let folder else { return }
-        list = repository.searchItemAsArray(folder: folder, category: category, searchController.searchBar.text!)
+        viewModel.outputList.value = repository.searchItemAsArray(folder: folder, category: category, searchController.searchBar.text!)
     }
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return viewModel.outputList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as! ListTableViewCell
-        let data = list[indexPath.row]
+        let data = viewModel.outputList.value[indexPath.row]
         cell.data = data
         cell.configure(data: data)
         cell.didCompleteButtonTapped = {
@@ -98,7 +101,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flag = UIContextualAction(style: .normal, title: "깃발") { action, view, completion in
-            let data = self.list[indexPath.row]
+            let data = self.viewModel.outputList.value[indexPath.row]
             self.repository.updateFlagged(data: data) {
                 self.view.makeToast("깃발이 해제 되었습니다.")
             } isFlagged: {
@@ -111,15 +114,15 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
-            let data = self.list[indexPath.row]
+            let data = self.viewModel.outputList.value[indexPath.row]
             self.repository.deleteItem(data: data)
-            self.list.remove(at: indexPath.row)
+            self.viewModel.outputList.value.remove(at: indexPath.row)
         }
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let todo = list[indexPath.row]
+        let todo = viewModel.outputList.value[indexPath.row]
         let vc = DetailViewController()
         vc.todo = todo
         navigationController?.pushViewController(vc, animated: true)
