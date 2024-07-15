@@ -20,6 +20,8 @@
 		D10DAA6B2C42AF44001F25FF /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA6A2C42AF44001F25FF /* CalendarViewModel.swift */; };
 		D10DAA6D2C42B486001F25FF /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA6C2C42B486001F25FF /* ListViewModel.swift */; };
 		D10DAA6F2C42B697001F25FF /* TotalSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA6E2C42B697001F25FF /* TotalSearchViewModel.swift */; };
+		D10DAA7F2C44F989001F25FF /* DatailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA7E2C44F989001F25FF /* DatailViewModel.swift */; };
+		D10DAA812C450CF4001F25FF /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAA802C450CF4001F25FF /* CategoryListViewModel.swift */; };
 		D18A4F302C34CA010001D7E8 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */; };
 		D18A4F322C34CBAD0001D7E8 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */; };
 		D18A4F342C34CD7D0001D7E8 /* CategoryListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */; };
@@ -77,6 +79,8 @@
 		D10DAA6A2C42AF44001F25FF /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		D10DAA6C2C42B486001F25FF /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		D10DAA6E2C42B697001F25FF /* TotalSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSearchViewModel.swift; sourceTree = "<group>"; };
+		D10DAA7E2C44F989001F25FF /* DatailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatailViewModel.swift; sourceTree = "<group>"; };
+		D10DAA802C450CF4001F25FF /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		D18A4F312C34CBAD0001D7E8 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		D18A4F332C34CD7D0001D7E8 /* CategoryListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 			children = (
 				D18A4F522C35480B0001D7E8 /* DetailView.swift */,
 				D18A4F542C3548300001D7E8 /* DetailViewController.swift */,
+				D10DAA7E2C44F989001F25FF /* DatailViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				D1E5883D2C34C79100F3E452 /* CategoryListView.swift */,
 				D18A4F2F2C34CA010001D7E8 /* CategoryListViewController.swift */,
 				D18A4F3C2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift */,
+				D10DAA802C450CF4001F25FF /* CategoryListViewModel.swift */,
 			);
 			path = CategoryList;
 			sourceTree = "<group>";
@@ -441,6 +447,7 @@
 				D18A4F532C35480B0001D7E8 /* DetailView.swift in Sources */,
 				D10DA99F2C3BE367001F25FF /* FolderRepository.swift in Sources */,
 				D1E588122C33E48500F3E452 /* ListView.swift in Sources */,
+				D10DAA812C450CF4001F25FF /* CategoryListViewModel.swift in Sources */,
 				D1E5882D2C33ED7B00F3E452 /* RegisterView.swift in Sources */,
 				D1E588282C33E91000F3E452 /* RealmModel.swift in Sources */,
 				D1E587FC2C33E28200F3E452 /* SceneDelegate.swift in Sources */,
@@ -450,6 +457,7 @@
 				D18A4F3D2C34DFF10001D7E8 /* CategoryListCollectionViewCell.swift in Sources */,
 				D10DA99D2C3BE126001F25FF /* FolderViewController.swift in Sources */,
 				D18A4F552C3548300001D7E8 /* DetailViewController.swift in Sources */,
+				D10DAA7F2C44F989001F25FF /* DatailViewModel.swift in Sources */,
 				D1E588322C33FC9400F3E452 /* Extension+UIViewController.swift in Sources */,
 				D1E588142C33E4EA00F3E452 /* BaseTableViewCell.swift in Sources */,
 				D10DA99B2C3BE10F001F25FF /* FolderView.swift in Sources */,

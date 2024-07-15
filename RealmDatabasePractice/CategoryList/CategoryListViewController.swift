@@ -9,9 +9,7 @@ import UIKit
 
 final class CategoryListViewController: UIViewController {
     private let categoryListView = CategoryListView()
-    private let repository = TodoRepository()
-    
-    var folder: Folder?
+    let viewModel = CategoryListViewModel()
     
     override func loadView() {
         categoryListView.delegate = self
@@ -22,25 +20,14 @@ final class CategoryListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setObserveTodoTable()
         setNavi()
+        bindData()
     }
 }
 
 private extension CategoryListViewController {
-    func setNavi() {
-        let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonTapped))
-        navigationItem.rightBarButtonItem = calendarButton
-    }
-    
-    @objc func calendarButtonTapped() {
-        let vc = CalendarViewController()
-        vc.folder = folder
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func setObserveTodoTable() {
-        repository.setNotificationToken { [weak self] changes in
+    func bindData() {
+        viewModel.outputObserve.bind { [weak self] changes in
             guard let collectionView = self?.categoryListView.collectionView else { return }
             switch changes {
             case .initial(_):
@@ -49,14 +36,27 @@ private extension CategoryListViewController {
                 collectionView.reloadData()
             case .error(let error):
                 fatalError("\(error)")
+            case .none:
+                print("none")
             }
         }
+    }
+    
+    func setNavi() {
+        let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonTapped))
+        navigationItem.rightBarButtonItem = calendarButton
+    }
+    
+    @objc func calendarButtonTapped() {
+        let vc = CalendarViewController()
+        vc.viewModel.inputFolder.value = viewModel.outputFolder.value
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension CategoryListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CategoryList.allCases.count
+        return viewModel.outputList.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,7 +64,7 @@ extension CategoryListViewController: UICollectionViewDelegate, UICollectionView
         guard let data = CategoryList(rawValue: indexPath.row) else { 
             return cell
         }
-        cell.folder = folder
+        cell.folder = viewModel.outputFolder.value
         cell.configure(category: data)
         return cell
     }
@@ -72,7 +72,7 @@ extension CategoryListViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = CategoryList.allCases[indexPath.item]
         let vc = ListViewController(category: selectedCategory)
-        vc.folder = folder
+        vc.viewModel.inputViewDidLoadTrigger.value = (viewModel.outputFolder.value, selectedCategory)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -80,7 +80,7 @@ extension CategoryListViewController: UICollectionViewDelegate, UICollectionView
 extension CategoryListViewController: CategoryListDelegate {
     func didCreateTodoButtonTapped() {
         let vc = RegisterViewController()
-        vc.folder = folder
+        vc.viewModel.outputFolder.value = viewModel.outputFolder.value
         let navi = UINavigationController(rootViewController: vc)
         present(navi, animated: true)
     }

@@ -8,8 +8,10 @@
 import Foundation
 
 final class RegisterViewModel {
+    private let repository = FolderRepository()
     var outputTodo: Observable<Todo?> = Observable(Todo(title: "", content: nil, date: nil, tag: nil, priority: nil))
     var outputImage: Observable<NSItemProviderReading?> = Observable(nil)
+    var outputFolder: Observable<Folder?> = Observable(nil)
     
     var inputTitle: Observable<String> = Observable("")
     var inputContent: Observable<String?> = Observable(nil)
@@ -17,6 +19,7 @@ final class RegisterViewModel {
     var inputTag: Observable<String?> = Observable(nil)
     var inputPriority: Observable<String?> = Observable(nil)
     var inputImage: Observable<NSItemProviderReading?> = Observable(nil)
+    var inputAddButton: Observable<(Todo?, Folder?)> = Observable((nil, nil))
     
     init() {
         inputTitle.bind { [weak self] title in
@@ -41,6 +44,11 @@ final class RegisterViewModel {
         
         inputImage.bind { [weak self] image in
             self?.outputImage.value = image
+        }
+        
+        inputAddButton.bind { [weak self] (todo, folder) in
+            guard let todo, let folder else { return }
+            self?.repository.createFolder(todo, folder: folder)
         }
     }
 }

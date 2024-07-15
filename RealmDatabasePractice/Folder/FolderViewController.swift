@@ -11,7 +11,6 @@ import Toast
 final class FolderViewController: UIViewController {
     private let folderView = FolderView()
     private let viewModel = FolderViewModel()
-    private let repository = FolderRepository()
     
     override func loadView() {
         folderView.collectionView.delegate = self
@@ -22,7 +21,6 @@ final class FolderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindData()
-        observeFolders()
     }
 }
 
@@ -32,19 +30,10 @@ private extension FolderViewController {
             guard let self else { return }
             folderView.collectionView.reloadData()
         }
-    }
-    
-    func observeFolders() {
-        repository.observeFolders { [weak self] changes in
-            guard let self else { return }
-            switch changes {
-            case .initial(let result):
-                viewModel.outputFolderList.value = Array(result)
-            case .update(let result, deletions: let deletions, insertions: let insertions, modifications: let modifications):
-                viewModel.outputFolderList.value = Array(result)
-            case .error(let error):
-                view.makeToast(error.localizedDescription, duration: 3, position: .center)
-            }
+        
+        viewModel.outputObserveError.bind { [weak self] error in
+            guard let error else { return }
+            self?.view.makeToast(error.localizedDescription, duration: 3, position: .center)
         }
     }
 }
@@ -64,7 +53,7 @@ extension FolderViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let folder = viewModel.outputFolderList.value[indexPath.row]
         let vc = CategoryListViewController()
-        vc.folder = folder
+        vc.viewModel.outputFolder.value = folder
         navigationController?.pushViewController(vc, animated: true)
     }
     

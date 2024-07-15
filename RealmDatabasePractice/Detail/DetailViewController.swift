@@ -9,7 +9,7 @@ import UIKit
 
 final class DetailViewController: UIViewController {
     private let detailView = DetailView()
-    var todo: Todo?
+    let viewModel = DetailViewModel()
     
     override func loadView() {
         view = detailView
@@ -17,8 +17,15 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let todo else { return }
-        detailView.configure(todo: todo)
+        bindData()
     }
-    
+}
+
+private extension DetailViewController {
+    func bindData() {
+        viewModel.outputTodo.bind { [weak self] todo in
+            guard let todo else { return }
+            self?.detailView.configure(todo: todo)
+        }
+    }
 }

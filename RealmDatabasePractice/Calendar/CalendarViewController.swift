@@ -11,11 +11,8 @@ import RealmSwift
 import SnapKit
 
 final class CalendarViewController: UIViewController {
-    private let repository = TodoRepository()
     private let calendarView = CalendarView()
-    private let viewModel = CalendarViewModel()
-    
-    var folder: Folder?
+    let viewModel = CalendarViewModel()
     
     override func loadView() {
         calendarView.calendar.delegate = self
@@ -27,7 +24,6 @@ final class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.inputViewDidLoadTrigger.value = folder
         bindData()
     }
 }
@@ -42,13 +38,12 @@ private extension CalendarViewController {
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        guard let folder else { return 0 }
-        return repository.fetchDate(folder: folder, date: date).count
+        viewModel.inputNumberOfEventsFor.value = (viewModel.inputFolder.value, date)
+        return viewModel.outputNumberOfEventsFor.value
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        guard let folder else { return }
-        viewModel.outputCalendarTodoList.value = repository.fetchDate(folder: folder, date: date)
+        viewModel.inputDidSelect.value = (viewModel.inputFolder.value, date)
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {

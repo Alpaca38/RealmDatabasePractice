@@ -11,14 +11,7 @@ import Toast
 
 final class RegisterViewController: UIViewController {
     private let registerView = RegisterView()
-    private let repository = FolderRepository()
-    private let viewModel = RegisterViewModel()
-//    private var date: Date?
-//    private var tag: String?
-//    private var priority: String?
-//    private var image: UIImage?
-    
-    var folder: Folder?
+    let viewModel = RegisterViewModel()
     
     override func loadView() {
         registerView.tableView.delegate = self
@@ -60,9 +53,9 @@ private extension RegisterViewController {
         viewModel.inputTitle.value = title
         viewModel.inputContent.value = registerView.contentTextField.text
         
-        let data = viewModel.outputTodo.value
-        guard let folder, let data else { return }
-        repository.createFolder(data, folder: folder)
+        viewModel.inputAddButton.value = (viewModel.outputTodo.value, viewModel.outputFolder.value)
+        
+        guard let data = viewModel.outputTodo.value else { return }
         
         if let image = viewModel.outputImage.value as? UIImage {
             saveImageToDocument(image: image, filename: "\(data.id)")
